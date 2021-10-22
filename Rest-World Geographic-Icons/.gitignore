@@ -41,6 +41,7 @@ local.properties
 # Maven
 log/
 target/
+.mvn/wrapper/maven-wrapper.jar
 
 # Tern plugin
 .tern-project
