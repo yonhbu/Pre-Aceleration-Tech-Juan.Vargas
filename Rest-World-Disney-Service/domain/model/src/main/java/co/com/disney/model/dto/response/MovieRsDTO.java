@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import co.com.disney.model.CharacterEntity;
-import co.com.disney.model.MovieEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
