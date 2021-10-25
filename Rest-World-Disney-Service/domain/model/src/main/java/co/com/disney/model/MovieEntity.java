@@ -15,12 +15,11 @@ import lombok.NoArgsConstructor;
 public class MovieEntity {
 	
 	private Long idMovie;
-	private String title;
 	private String image;
+	private String title;
 	private LocalDate creationDate;	
 	private Integer rating;
     private List<CharacterEntity> associatedCharacter;
-    private GenderEntity gender;
     
     
 

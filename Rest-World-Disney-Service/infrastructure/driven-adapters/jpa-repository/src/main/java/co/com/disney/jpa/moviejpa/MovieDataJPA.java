@@ -45,8 +45,6 @@ public class MovieDataJPA implements Serializable {
 	private Integer rating;
 	
    // private List<CharacterDataJPA> associatedCharacter;
-
-    private GenderDataJPA gender;
     
 }
     

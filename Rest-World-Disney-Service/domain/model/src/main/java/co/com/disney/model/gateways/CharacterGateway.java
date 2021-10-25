@@ -6,11 +6,11 @@ import co.com.disney.model.CharacterEntity;
 
 public interface CharacterGateway {
 
-	public CharacterEntity createCharacter (CharacterEntity character);
+	public CharacterEntity createCharacter (CharacterEntity characterEntity);
 
-	public CharacterEntity updateCharacter (Integer id, CharacterEntity character);
+	public CharacterEntity updateCharacter (Long id, CharacterEntity characterEntity);
 
-	public void deleteCharacter (Integer id);
+	public void deleteCharacter (Long id);
 
 	public List<CharacterEntity> findCharacterDetail ();
 	

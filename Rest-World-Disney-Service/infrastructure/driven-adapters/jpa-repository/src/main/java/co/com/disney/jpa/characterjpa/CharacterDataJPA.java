@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="CHARACTERJPA")
+@Table(name="CHARACTERDATA")
 public class CharacterDataJPA implements Serializable {
 
 	private static final long serialVersionUID = 1L;

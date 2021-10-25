@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface CharacterRepositoryJPA extends CrudRepository<CharacterDataJPA, Integer> {
+public interface CharacterRepositoryJPA extends CrudRepository<CharacterDataJPA, Long> {
 	
 	
 	@Query("SELECT p FROM CharacterDataJPA p WHERE p.name = :name")
