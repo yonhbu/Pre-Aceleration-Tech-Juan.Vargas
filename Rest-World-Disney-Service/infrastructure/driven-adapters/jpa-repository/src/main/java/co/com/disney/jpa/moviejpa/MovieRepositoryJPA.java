@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MovieRepositoryJPA extends CrudRepository<MovieDataJPA, Integer> {
+public interface MovieRepositoryJPA extends CrudRepository<MovieDataJPA, Long> {
 	
 	@Query("SELECT p FROM MovieDataJPA p WHERE p.title = :title")
 	List<MovieDataJPA> findMovieDataJPAByTitle (@Param("title") final String title);

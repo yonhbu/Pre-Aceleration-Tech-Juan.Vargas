@@ -6,11 +6,11 @@ import co.com.disney.model.MovieEntity;
 
 public interface MovieGateway {
 
-	public MovieEntity createMovie (MovieEntity movie);
+	public MovieEntity createMovie (MovieEntity movieEntity);
 
-	public MovieEntity updateMovie (Integer id, MovieEntity movie);
+	public MovieEntity updateMovie (Long id, MovieEntity movieEntity);
 
-	public void deleteMovie (Integer id);
+	public void deleteMovie (Long id);
 
 	public List<MovieEntity> findMovieDetail ();
 	
