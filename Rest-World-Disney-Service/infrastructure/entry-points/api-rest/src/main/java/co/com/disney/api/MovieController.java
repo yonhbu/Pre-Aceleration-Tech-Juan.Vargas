@@ -69,7 +69,7 @@ public class MovieController {
 
 		// convert entity to DTO
 		MovieRsDTO movieResponse = ObjectMapperUtils.map(movie, MovieRsDTO.class);
-		log.info("updateEvent() - start: id = {}, movie = {}", movieIdId, movieRqDTO);
+		log.info("updateMovie() - start: id = {}, movie = {}", movieIdId, movieRqDTO);
 		return new ResponseEntity<>(movieResponse, HttpStatus.OK);
 
 	}

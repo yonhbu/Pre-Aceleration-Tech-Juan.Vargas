@@ -70,7 +70,7 @@ public class CharacterController {
 
 		// convert entity to DTO
 		CharacterRsDTO characterResponse = ObjectMapperUtils.map(character, CharacterRsDTO.class);
-		log.info("updateEvent() - start: id = {}, character = {}", characterId, characterRqDTO);
+		log.info("updateCharacter() - start: id = {}, character = {}", characterId, characterRqDTO);
 		return new ResponseEntity<>(characterResponse, HttpStatus.OK);
 
 	}

@@ -1,0 +1,349 @@
+{
+	"info": {
+		"_postman_id": "764b01c4-b440-4ee1-8f81-a2d2759e35cf",
+		"name": "SpringBoot EndPoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tehcnical Exercise",
+			"item": [
+				{
+					"name": "Geographic Icon",
+					"item": [
+						{
+							"name": "Create Icon",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n\t\"image\": \"/src/icon/image/col.jpg\",\r\n    \"denomination\": \"$\",\r\n    \"creationDate\": \"2019-06-12\",\r\n    \"altitude\": \"5000\",\r\n    \"history\": \"El peso ha sido la moneda colombiana desde 1810. En 1837 el peso reemplazó al real a una tasa de cambio de 1 peso = 8 reales, estando dividido inicialmente en 8 reales.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/icons",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"icons"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult Field Icon",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/icons",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"icons"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Icon",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"image\": \"/src/co/com/colombia.jpg\",\r\n    \"denomination\": \"$\",\r\n    \"creationDate\": \"2019-06-12\",\r\n    \"altitude\": \"5000\",\r\n    \"history\": \"El peso ha sido la moneda colombiana desde 1810. En 1837 el peso reemplazó al real a una tasa de cambio de 1 peso = 8 reales, estando dividido inicialmente en 8 reales.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/icons/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"icons",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Icon",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/icons/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"icons",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Country",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"image\": \"/src/country/image/col.jpg\",\r\n    \"denomination\": \"$\",\r\n\t\"numberInhabitants\": 50000000,\r\n\t\"surface\": 5000,\r\n    \"idContinent\": 5\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/country",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Country",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"image\": \"/src/country/image/col.jpg\",\r\n    \"denomination\": \"$\",\r\n\t\"numberInhabitants\": 50000000,\r\n\t\"surface\": 6000,\r\n    \"idContinent\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/country/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Country",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/country/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult Field Country",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/country",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Continent",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"image\": \"/src/continent/image/Sur_America.jpg\",\r\n    \"denomination\": \"$\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/continent",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"continent"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Fail) Details Icon",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/icons/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"icons",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Fail) Details Country",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/country/10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country",
+										"10"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Fail) Filter Search Icon",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/icons?name=denominación",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"icons"
+									],
+									"query": [
+										{
+											"key": "age",
+											"value": "20",
+											"disabled": true
+										},
+										{
+											"key": "idMovie",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "denominación"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "(Fail) Filter Search Movie",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/country?name=denominación",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country"
+									],
+									"query": [
+										{
+											"key": "genre",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "denominación"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

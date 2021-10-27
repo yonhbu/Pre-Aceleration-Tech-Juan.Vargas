@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.geographic.icons.dto.IconDTOImageAndDenomination;
-import co.com.geographic.icons.dto.IconRqDTO;
-import co.com.geographic.icons.dto.IconRsDTO;
+import co.com.geographic.icons.dto.icon.IconDTOImageAndDenomination;
+import co.com.geographic.icons.dto.icon.IconRqDTO;
+import co.com.geographic.icons.dto.icon.IconRsDTO;
 import co.com.geographic.icons.model.IconEntity;
-import co.com.geographic.icons.services.IconServiceImp;
+import co.com.geographic.icons.services.impl.IconServiceImpl;
 import co.com.geographic.icons.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IconController {
 
-	private final IconServiceImp iconServiceImp;
+	private final IconServiceImpl iconServiceImp;
 
 
 	@PostMapping("/icons")
@@ -69,7 +69,7 @@ public class IconController {
 
 		// convert entity to DTO
 		IconRsDTO iconResponse = ObjectMapperUtils.map(icon, IconRsDTO.class);
-		log.info("updateEvent() - start: id = {}, icon = {}", iconId, iconRqDTO);
+		log.info("updateIcon() - start: id = {}, icon = {}", iconId, iconRqDTO);
 		return new ResponseEntity<>(iconResponse, HttpStatus.OK);
 
 	}

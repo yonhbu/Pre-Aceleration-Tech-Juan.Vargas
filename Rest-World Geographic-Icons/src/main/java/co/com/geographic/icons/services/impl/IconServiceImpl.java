@@ -1,4 +1,4 @@
-package co.com.geographic.icons.services;
+package co.com.geographic.icons.services.impl;
 
 import java.util.List;
 
@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 import co.com.geographic.icons.exception.ResourceNotFoundException;
 import co.com.geographic.icons.model.IconEntity;
 import co.com.geographic.icons.repository.IconRepository;
+import co.com.geographic.icons.services.IIconService;
 
 
 @Service
-public class IconServiceImp implements IconService{
+public class IconServiceImpl implements IIconService{
 
 
 	@Autowired

@@ -5,7 +5,7 @@ import java.util.List;
 import co.com.geographic.icons.model.IconEntity;
 
 
-public interface IconService {
+public interface IIconService {
 	
 	public List<IconEntity> getAllIcons ();
 	
