@@ -45,7 +45,7 @@ public class CountryEntity  {
 
 	private Long surface; //m2
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn (name = "id_Continent", insertable = false, updatable = false)
 	private ContinentEntity continent;
 
