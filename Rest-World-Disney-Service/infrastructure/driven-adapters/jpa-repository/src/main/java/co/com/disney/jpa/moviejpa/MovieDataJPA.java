@@ -30,7 +30,7 @@ public class MovieDataJPA implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "id_movie")
 	@Id	
 	private Long idMovie;

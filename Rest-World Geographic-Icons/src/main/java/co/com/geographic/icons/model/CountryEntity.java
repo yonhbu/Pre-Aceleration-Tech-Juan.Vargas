@@ -60,25 +60,6 @@ public class CountryEntity  {
 	private Set<IconEntity> icons;
 
 
-	@Override
-	public boolean equals (Object obj) {
-
-		if (obj == null)
-			return false ;
-
-		if (getClass() != obj.getClass()) 
-			return false;
-
-		final CountryEntity otherCountry = (CountryEntity) obj;
-		return otherCountry.idCountry == this.idCountry;
-	}
-	
-	
-	
-	 @Override
-	  public int hashCode() {
-		return 0;
-	  }
 
 
 }

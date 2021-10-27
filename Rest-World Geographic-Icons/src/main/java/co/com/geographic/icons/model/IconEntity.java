@@ -49,13 +49,4 @@ public class IconEntity  {
     
     
     
-    public void addCountry (CountryEntity country) {
-    	this.listCountry.add(country);
-    }
-    
-    
-    public void removeCountry (CountryEntity country) {
-    	this.listCountry.remove(country);
-    }
-    
 }

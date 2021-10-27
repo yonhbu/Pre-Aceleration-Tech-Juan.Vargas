@@ -25,7 +25,7 @@ public class CharacterDataJPA implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "id_character")
 	@Id	
 	private Long idCharacter;
