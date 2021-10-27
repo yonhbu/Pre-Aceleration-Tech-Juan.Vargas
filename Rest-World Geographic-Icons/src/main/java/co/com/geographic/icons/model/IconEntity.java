@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
@@ -20,11 +22,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name="ICON")
+@SQLDelete(sql = "update icon SET deleted = true where id_icon = ?")
+@Where(clause = "deleted = false")
 public class IconEntity  {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,6 +50,8 @@ public class IconEntity  {
     @ManyToMany(mappedBy = "icons", cascade = CascadeType.ALL)
     private List<CountryEntity> listCountry;
     
+    private boolean deleted = Boolean.FALSE;
     
+  
     
 }
