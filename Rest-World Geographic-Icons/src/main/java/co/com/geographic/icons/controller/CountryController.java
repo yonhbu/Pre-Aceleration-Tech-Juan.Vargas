@@ -17,7 +17,7 @@ import co.com.geographic.icons.dto.country.CountryDTOImageAndDenomination;
 import co.com.geographic.icons.dto.country.CountryRqDTO;
 import co.com.geographic.icons.dto.country.CountryRsDTO;
 import co.com.geographic.icons.model.CountryEntity;
-import co.com.geographic.icons.services.impl.CountryServiceImpl;
+import co.com.geographic.icons.services.ICountryService;
 import co.com.geographic.icons.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CountryController {
 
-	private final CountryServiceImpl countryServiceImpl;
+	private final ICountryService iCountryService;
 
 
 	@PostMapping("/country")
@@ -36,7 +36,7 @@ public class CountryController {
 
 		// convert DTO to entity
 		CountryEntity countryEntity = ObjectMapperUtils.map(countryRqDTO, CountryEntity.class);
-		CountryEntity country = countryServiceImpl.save(countryEntity);
+		CountryEntity country = iCountryService.save(countryEntity);
 
 		// convert entity to DTO
 		CountryRsDTO countryResponse = ObjectMapperUtils.map(country, CountryRsDTO.class);
@@ -50,7 +50,7 @@ public class CountryController {
 	@GetMapping("/country")
 	public ResponseEntity<List<CountryDTOImageAndDenomination>> listCountryImageAndDenomination () {
 
-		List<CountryEntity> listCountry = countryServiceImpl.getAllCountrys();
+		List<CountryEntity> listCountry = iCountryService.getAllCountrys();
 
 		// convert entity to DTO
 		List<CountryDTOImageAndDenomination> countryResponse = ObjectMapperUtils.mapAll(listCountry, CountryDTOImageAndDenomination.class);
@@ -65,7 +65,7 @@ public class CountryController {
 
 		// convert DTO to entity
 		CountryEntity countryEntity = ObjectMapperUtils.map(countryRqDTO, CountryEntity.class);
-		CountryEntity country = countryServiceImpl.update(countryId, countryEntity);
+		CountryEntity country = iCountryService.update(countryId, countryEntity);
 
 		// convert entity to DTO
 		CountryRsDTO countryResponse = ObjectMapperUtils.map(country, CountryRsDTO.class);
@@ -79,7 +79,7 @@ public class CountryController {
 	@DeleteMapping("/country/{countryId}")
 	public ResponseEntity<String> deleteCountry (@PathVariable ("countryId") Long countryId) {
 		try {
-			countryServiceImpl.delete(countryId);
+			iCountryService.delete(countryId);
 			log.info("Request received for Country deletion with id= " + countryId);
 			return new ResponseEntity<>("Country Delete Success", HttpStatus.OK);
 		} catch (Exception e) {

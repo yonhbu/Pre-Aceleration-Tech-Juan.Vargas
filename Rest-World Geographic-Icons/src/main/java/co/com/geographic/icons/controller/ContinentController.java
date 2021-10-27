@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.geographic.icons.dto.continent.ContinentRqDTO;
 import co.com.geographic.icons.dto.continent.ContinentRsDTO;
 import co.com.geographic.icons.model.ContinentEntity;
-import co.com.geographic.icons.services.impl.ContinentServiceImpl;
+import co.com.geographic.icons.services.IContinentService;
 import co.com.geographic.icons.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ContinentController {
 
-	private final ContinentServiceImpl continentServiceImpl;
+	private final IContinentService iContinentService;
 
 
 	@PostMapping("/continent")
@@ -29,7 +29,7 @@ public class ContinentController {
 
 		// convert DTO to entity
 		ContinentEntity continentEntity = ObjectMapperUtils.map(continentRqDTO, ContinentEntity.class);
-		ContinentEntity continent = continentServiceImpl.save(continentEntity);
+		ContinentEntity continent = iContinentService.save(continentEntity);
 
 		// convert entity to DTO
 		ContinentRsDTO continentResponse = ObjectMapperUtils.map(continent, ContinentRsDTO.class);

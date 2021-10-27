@@ -17,7 +17,7 @@ import co.com.geographic.icons.dto.icon.IconDTOImageAndDenomination;
 import co.com.geographic.icons.dto.icon.IconRqDTO;
 import co.com.geographic.icons.dto.icon.IconRsDTO;
 import co.com.geographic.icons.model.IconEntity;
-import co.com.geographic.icons.services.impl.IconServiceImpl;
+import co.com.geographic.icons.services.IIconService;
 import co.com.geographic.icons.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class IconController {
 
-	private final IconServiceImpl iconServiceImp;
+	private final IIconService iIconService;
 
 
 	@PostMapping("/icons")
@@ -36,7 +36,7 @@ public class IconController {
 
 		// convert DTO to entity
 		IconEntity iconEntity = ObjectMapperUtils.map(iconRqDTO, IconEntity.class);
-		IconEntity icon = iconServiceImp.save(iconEntity);
+		IconEntity icon = iIconService.save(iconEntity);
 
 		// convert entity to DTO
 		IconRsDTO iconResponse = ObjectMapperUtils.map(icon, IconRsDTO.class);
@@ -50,7 +50,7 @@ public class IconController {
 	@GetMapping("/icons")
 	public ResponseEntity<List<IconDTOImageAndDenomination>> listIconImageAndDenomination () {
 
-		List<IconEntity> listIcon = iconServiceImp.getAllIcons();
+		List<IconEntity> listIcon = iIconService.getAllIcons();
 
 		// convert entity to DTO
 		List<IconDTOImageAndDenomination> iconResponse = ObjectMapperUtils.mapAll(listIcon, IconDTOImageAndDenomination.class);
@@ -65,7 +65,7 @@ public class IconController {
 
 		// convert DTO to entity
 		IconEntity iconEntity = ObjectMapperUtils.map(iconRqDTO, IconEntity.class);
-		IconEntity icon = iconServiceImp.update(iconId, iconEntity);
+		IconEntity icon = iIconService.update(iconId, iconEntity);
 
 		// convert entity to DTO
 		IconRsDTO iconResponse = ObjectMapperUtils.map(icon, IconRsDTO.class);
@@ -79,7 +79,7 @@ public class IconController {
 	@DeleteMapping("/icons/{iconId}")
 	public ResponseEntity<String> deleteIcon (@PathVariable ("iconId") Long iconId) {
 		try {
-			iconServiceImp.delete(iconId);
+			iIconService.delete(iconId);
 			log.info("Request received for Icon deletion with id= " + iconId);
 			return new ResponseEntity<>("Icon Delete Success", HttpStatus.OK);
 		} catch (Exception e) {
