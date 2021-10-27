@@ -44,14 +44,13 @@ public class CountryServiceImpl implements ICountryService {
 			throw new ResourceNotFoundException(CountryEntity.class, id);
 		}
 
-		CountryEntity.builder()
-				.image(countryEntity.getImage())
-				.denomination(countryEntity.getDenomination())
-				.numberInhabitants(countryEntity.getNumberInhabitants())
-				.surface(countryEntity.getSurface())
-			    .icons(countryEntity.getIcons())
-		    .build();
-
+	 
+		 countryFind.setImage(countryEntity.getImage());
+		 countryFind.setDenomination(countryEntity.getDenomination());
+		 countryFind.setNumberInhabitants(countryEntity.getNumberInhabitants());
+		 countryFind.setSurface(countryEntity.getSurface());
+		 countryFind.setIdContinent(countryEntity.getIdContinent());
+		 countryFind.setIcons(countryEntity.getIcons());
 
 		countryRepository.save(countryFind);
 		return countryFind;
