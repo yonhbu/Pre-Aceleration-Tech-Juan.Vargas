@@ -2,6 +2,8 @@ package co.com.geographic.icons.services.impl;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,12 @@ public class ContinentServiceImpl implements IContinentService {
 	@Override
 	public ContinentEntity save (ContinentEntity continentEntity) {
 		return continentRepository.save(continentEntity);
+	}
+
+
+	@Override
+	public List<ContinentEntity> getAllContinents() {
+		return (List<ContinentEntity>) continentRepository.findAll();
 	}
 
 

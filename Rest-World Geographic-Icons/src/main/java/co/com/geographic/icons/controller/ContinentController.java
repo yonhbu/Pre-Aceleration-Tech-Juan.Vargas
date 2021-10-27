@@ -1,8 +1,11 @@
 package co.com.geographic.icons.controller;
 
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +39,18 @@ public class ContinentController {
 		log.info("Request received for Continent insert", continent.toString());
 		return new ResponseEntity<>(continentResponse, HttpStatus.CREATED);
 
+
+	}
+	
+	
+	@GetMapping("/continent")
+	public ResponseEntity<List<ContinentRsDTO>> getAllContinents () {
+
+		List<ContinentEntity> listContinent = iContinentService.getAllContinents();
+
+		// convert entity to DTO
+		List<ContinentRsDTO> listContinentResponse = ObjectMapperUtils.mapAll(listContinent, ContinentRsDTO.class);
+		return new ResponseEntity<>(listContinentResponse, HttpStatus.OK);
 
 	}
 

@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Table(name="ICON")
 public class IconEntity  {
 	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column (name = "id_icon")
 	@Id	
 	private Long idIcon;
