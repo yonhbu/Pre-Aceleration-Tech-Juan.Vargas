@@ -21,7 +21,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
+@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -50,6 +52,7 @@ public class IconEntity  {
     @ManyToMany(mappedBy = "icons", cascade = CascadeType.ALL)
     private List<CountryEntity> listCountry;
     
+    @Builder.Default
     private boolean deleted = Boolean.FALSE;
     
   

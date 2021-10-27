@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +30,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="COUNTRY")
+@SQLDelete(sql = "update country SET deleted = true where id_Country = ?")
+@Where(clause = "deleted = false")
 public class CountryEntity  {
 
 
@@ -59,6 +63,9 @@ public class CountryEntity  {
 	inverseJoinColumns = {
 			@JoinColumn(name = "id_icon", nullable = false)})
 	private Set<IconEntity> icons;
+	
+	@Builder.Default
+    private boolean deleted = Boolean.FALSE;
 
 
 
