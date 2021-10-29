@@ -57,6 +57,17 @@ public class CountryController {
 		return new ResponseEntity<>(countryResponse, HttpStatus.OK);
 
 	}
+	
+	@GetMapping("/country/all")
+	public ResponseEntity<List<CountryRsDTO>> getAllCountrys () {
+
+		List<CountryEntity> listCountry = iCountryService.getAllCountrys();
+
+		// convert entity to DTO
+		List<CountryRsDTO> countryResponse = ObjectMapperUtils.mapAll(listCountry, CountryRsDTO.class);
+		return new ResponseEntity<>(countryResponse, HttpStatus.OK);
+
+	}
 
 
 

@@ -59,6 +59,18 @@ public class IconController {
 	}
 	
 	
+	@GetMapping("/icons/all")
+	public ResponseEntity<List<IconRsDTO>> getAllIcons () {
+
+		List<IconEntity> listIcon = iIconService.getAllIcons();
+
+		// convert entity to DTO
+		List<IconRsDTO> iconResponse = ObjectMapperUtils.mapAll(listIcon, IconRsDTO.class);
+		return new ResponseEntity<>(iconResponse, HttpStatus.OK);
+
+	}
+	
+	
 
 	@PutMapping("/icons/{iconId}")
 	public ResponseEntity<IconRsDTO> updateIcons (@PathVariable ("iconId") Long iconId, @RequestBody IconRqDTO iconRqDTO) {

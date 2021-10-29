@@ -2,8 +2,7 @@ package co.com.geographic.icons.dto.country;
 
 import java.util.Set;
 
-import co.com.geographic.icons.model.ContinentEntity;
-import co.com.geographic.icons.model.IconEntity;
+import co.com.geographic.icons.dto.icon.IconRqDTO;
 import lombok.Data;
 
 @Data
@@ -15,8 +14,6 @@ public class CountryRsDTO {
 	private String denomination;
 	private Long numberInhabitants;
 	private Long surface;
-	private ContinentEntity continent;
-	private Long idContinent;
-	private Set<IconEntity> icons;
+	private Set<IconRqDTO> icons;
 
 }
