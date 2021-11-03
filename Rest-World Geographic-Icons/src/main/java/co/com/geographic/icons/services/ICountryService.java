@@ -14,6 +14,8 @@ public interface ICountryService {
 	public void delete (Long id);
 	
 	public CountryEntity update (Long id, CountryEntity countryEntity);
+
+	public CountryEntity findCountryforID(Long countryId);
 		
 
 }	

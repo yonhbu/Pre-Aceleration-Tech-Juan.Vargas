@@ -66,4 +66,11 @@ public class CountryServiceImpl implements ICountryService {
 
 
 
+	@Override
+	public CountryEntity findCountryforID(Long countryId) {
+		return countryRepository.findCountryByidCountry(countryId);
+	}
+
+
+
 }

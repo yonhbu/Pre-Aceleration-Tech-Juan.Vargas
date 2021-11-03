@@ -68,6 +68,18 @@ public class CountryController {
 		return new ResponseEntity<>(countryResponse, HttpStatus.OK);
 
 	}
+	
+	
+	@GetMapping("/country/{countryId}")
+	public ResponseEntity<CountryRsDTO> findCountry (@PathVariable ("countryId") Long countryId) {
+
+		CountryEntity country = iCountryService.findCountryforID(countryId);
+
+		// convert entity to DTO
+		CountryRsDTO countryResponse = ObjectMapperUtils.map(country, CountryRsDTO.class);
+		return new ResponseEntity<>(countryResponse, HttpStatus.OK);
+
+	}
 
 
 
