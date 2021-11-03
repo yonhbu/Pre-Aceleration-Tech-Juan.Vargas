@@ -14,6 +14,8 @@ public interface IIconService {
 	public void delete (Long id);
 	
 	public IconEntity update (Long id, IconEntity iconEntity);
+	
+	public IconEntity findIcon (Long id);
 		
 
 }	

@@ -61,4 +61,11 @@ public class IconServiceImpl implements IIconService{
 	}
 
 
+
+	@Override
+	public IconEntity findIcon(Long id) {
+		return iconRepository.findIconByidIcon(id);
+	}
+
+
 }
