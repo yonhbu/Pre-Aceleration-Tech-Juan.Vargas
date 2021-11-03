@@ -3,6 +3,8 @@ package co.com.geographic.icons.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +34,7 @@ public class CountryController {
 
 
 	@PostMapping("/country")
-	public ResponseEntity<CountryRsDTO> insertIcon (@RequestBody CountryRqDTO countryRqDTO) {
+	public ResponseEntity<CountryRsDTO> insertIcon (@Valid @RequestBody CountryRqDTO countryRqDTO) {
 
 		// convert DTO to entity
 		CountryEntity countryEntity = ObjectMapperUtils.map(countryRqDTO, CountryEntity.class);
@@ -84,7 +86,7 @@ public class CountryController {
 
 
 	@PutMapping("/country/{countryId}")
-	public ResponseEntity<CountryRsDTO> updateCountry (@PathVariable ("countryId") Long countryId, @RequestBody CountryRqDTO countryRqDTO) {
+	public ResponseEntity<CountryRsDTO> updateCountry (@PathVariable ("countryId") Long countryId, @Valid @RequestBody CountryRqDTO countryRqDTO) {
 
 		// convert DTO to entity
 		CountryEntity countryEntity = ObjectMapperUtils.map(countryRqDTO, CountryEntity.class);

@@ -56,7 +56,7 @@ public class CountryEntity  {
 	@Column (name = "id_Continent", nullable = false)
 	private Long idContinent;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(fetch = FetchType.LAZY,  cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "FK_rel_icon_country",
 	joinColumns = {
 			@JoinColumn(name = "id_country", nullable = false)},

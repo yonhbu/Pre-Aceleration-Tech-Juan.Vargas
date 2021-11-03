@@ -3,6 +3,8 @@ package co.com.geographic.icons.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +30,7 @@ public class ContinentController {
 
 
 	@PostMapping("/continent")
-	public ResponseEntity<ContinentRsDTO> insertContinent (@RequestBody ContinentRqDTO continentRqDTO) {
+	public ResponseEntity<ContinentRsDTO> insertContinent (@Valid @RequestBody ContinentRqDTO continentRqDTO) {
 
 		// convert DTO to entity
 		ContinentEntity continentEntity = ObjectMapperUtils.map(continentRqDTO, ContinentEntity.class);
