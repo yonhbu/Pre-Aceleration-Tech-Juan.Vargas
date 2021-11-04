@@ -2,6 +2,8 @@ package co.com.geographic.icons.controller;
 
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -13,11 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.geographic.icons.dto.country.CountryDTOImageAndDenomination;
 import co.com.geographic.icons.dto.country.CountryRqDTO;
 import co.com.geographic.icons.dto.country.CountryRsDTO;
+import co.com.geographic.icons.exception.ResourceNotFoundException;
 import co.com.geographic.icons.model.CountryEntity;
 import co.com.geographic.icons.services.ICountryService;
 import co.com.geographic.icons.util.ObjectMapperUtils;
@@ -27,13 +32,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("country")
 @Slf4j
 public class CountryController {
 
 	private final ICountryService iCountryService;
 
 
-	@PostMapping("/country")
+	@PostMapping()
 	public ResponseEntity<CountryRsDTO> insertIcon (@Valid @RequestBody CountryRqDTO countryRqDTO) {
 
 		// convert DTO to entity
@@ -49,7 +55,7 @@ public class CountryController {
 	}
 
 
-	@GetMapping("/country")
+	@GetMapping("/fields")
 	public ResponseEntity<List<CountryDTOImageAndDenomination>> listCountryImageAndDenomination () {
 
 		List<CountryEntity> listCountry = iCountryService.getAllCountrys();
@@ -60,7 +66,7 @@ public class CountryController {
 
 	}
 	
-	@GetMapping("/country/all")
+	@GetMapping("/all")
 	public ResponseEntity<List<CountryRsDTO>> getAllCountrys () {
 
 		List<CountryEntity> listCountry = iCountryService.getAllCountrys();
@@ -72,20 +78,44 @@ public class CountryController {
 	}
 	
 	
-	@GetMapping("/country/{countryId}")
+	
+	
+	
+	@GetMapping("/{countryId}")
 	public ResponseEntity<CountryRsDTO> findCountry (@PathVariable ("countryId") Long countryId) {
 
-		CountryEntity country = iCountryService.findCountryforID(countryId);
+		Optional<CountryEntity> country = iCountryService.findCountryforID(countryId);
+		
+		if (!country.isPresent()) {
+			throw new ResourceNotFoundException ();
+		}
 
 		// convert entity to DTO
 		CountryRsDTO countryResponse = ObjectMapperUtils.map(country, CountryRsDTO.class);
 		return new ResponseEntity<>(countryResponse, HttpStatus.OK);
 
 	}
+	
+	
+	@GetMapping()
+	public ResponseEntity<List<CountryRsDTO>> getCountrysDetailsByFilters (
+			                               @RequestParam (required = false) String name,
+			                               @RequestParam (required = false) String numberHabitants,
+			                               @RequestParam (required = false) Set<Long> continent,
+			                               @RequestParam (required = false, defaultValue = "ASC") String order) {
+	
+
+		List<CountryEntity> listCountryFilter = iCountryService.getCountryByFilters(name,numberHabitants,continent,order);
+
+		// convert entity to DTO
+		List<CountryRsDTO> listCountryResponseFilter = ObjectMapperUtils.mapAll(listCountryFilter, CountryRsDTO.class);
+		return new ResponseEntity<>(listCountryResponseFilter, HttpStatus.OK);
+
+	}
 
 
 
-	@PutMapping("/country/{countryId}")
+	@PutMapping("/{countryId}")
 	public ResponseEntity<CountryRsDTO> updateCountry (@PathVariable ("countryId") Long countryId, @Valid @RequestBody CountryRqDTO countryRqDTO) {
 
 		// convert DTO to entity
@@ -101,7 +131,7 @@ public class CountryController {
 
 
 
-	@DeleteMapping("/country/{countryId}")
+	@DeleteMapping("/{countryId}")
 	public ResponseEntity<String> deleteCountry (@PathVariable ("countryId") Long countryId) {
 		try {
 			iCountryService.delete(countryId);

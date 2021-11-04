@@ -6,7 +6,7 @@ public class ResourceNotFoundException extends RuntimeException{
 
 	public ResourceNotFoundException () {
 
-		super(" Was not found for parameter");
+		super(" Not found for parameter");
 
 	}
 

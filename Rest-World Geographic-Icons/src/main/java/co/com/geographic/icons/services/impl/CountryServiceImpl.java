@@ -1,17 +1,19 @@
 package co.com.geographic.icons.services.impl;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.com.geographic.icons.dto.country.CountryFiltersDTO;
 import co.com.geographic.icons.exception.ResourceNotFoundException;
 import co.com.geographic.icons.model.CountryEntity;
-import co.com.geographic.icons.model.IconEntity;
 import co.com.geographic.icons.repository.CountryRepository;
-import co.com.geographic.icons.repository.IconRepository;
+import co.com.geographic.icons.repository.specifications.CountrySpecification;
 import co.com.geographic.icons.services.ICountryService;
-import co.com.geographic.icons.services.IIconService;
+
 
 
 @Service
@@ -20,6 +22,9 @@ public class CountryServiceImpl implements ICountryService {
 
 	@Autowired
 	private CountryRepository countryRepository;
+	
+	@Autowired
+	private CountrySpecification countrySpecification;
 
 
 	@Override
@@ -67,8 +72,16 @@ public class CountryServiceImpl implements ICountryService {
 
 
 	@Override
-	public CountryEntity findCountryforID(Long countryId) {
-		return countryRepository.findCountryByidCountry(countryId);
+	public Optional<CountryEntity> findCountryforID(Long countryId) {
+		return countryRepository.findById(countryId);
+	}
+
+
+
+	@Override
+	public List<CountryEntity> getCountryByFilters(String name, String numberHabitants, Set<Long> continent, String order) {
+		CountryFiltersDTO countryFiltersDTO = new CountryFiltersDTO (name,numberHabitants,continent,order);	
+		return countryRepository.findAll(countrySpecification.getByFilter(countryFiltersDTO));
 	}
 
 

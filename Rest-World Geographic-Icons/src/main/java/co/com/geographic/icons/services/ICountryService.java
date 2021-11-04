@@ -1,6 +1,8 @@
 package co.com.geographic.icons.services;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import co.com.geographic.icons.model.CountryEntity;
 
@@ -15,7 +17,9 @@ public interface ICountryService {
 	
 	public CountryEntity update (Long id, CountryEntity countryEntity);
 
-	public CountryEntity findCountryforID(Long countryId);
+	public Optional<CountryEntity> findCountryforID(Long countryId);
+
+	public List<CountryEntity> getCountryByFilters(String name, String numberHabitants, Set<Long> continent, String order);
 		
 
 }	
