@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -38,8 +39,10 @@ public class IconEntity  {
 	@Id	
 	private Long idIcon;
 	
+	@NotNull(message = "image cannot be null")
 	private String image;
 	
+	@NotNull(message = "denomination cannot be null")
     private String denomination;
 
     @Column (name = "creation_date")

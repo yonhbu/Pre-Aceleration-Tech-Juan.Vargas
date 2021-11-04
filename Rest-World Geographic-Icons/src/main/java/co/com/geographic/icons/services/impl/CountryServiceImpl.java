@@ -41,7 +41,7 @@ public class CountryServiceImpl implements ICountryService {
 		CountryEntity countryFind = countryRepository.findCountryByidCountry(id);
 
 		if (countryFind == null) {
-			throw new ResourceNotFoundException(CountryEntity.class, id);
+			throw new ResourceNotFoundException();
 		}
 
 	 

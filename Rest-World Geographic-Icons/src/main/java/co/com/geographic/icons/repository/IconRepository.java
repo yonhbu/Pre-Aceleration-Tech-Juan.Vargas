@@ -15,9 +15,9 @@ import co.com.geographic.icons.model.IconEntity;
 @Repository
 public interface IconRepository extends CrudRepository<IconEntity,Long>, JpaSpecificationExecutor<IconEntity>{
 	
-	IconEntity findIconByidIcon (Long id);
-	
 	List<IconEntity> findAll (Specification<IconEntity> spec);
+
+	IconEntity findIconByidIcon(Long id);
 		
 
 }

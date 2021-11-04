@@ -1,6 +1,7 @@
 package co.com.geographic.icons.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class IconServiceImpl implements IIconService{
 		IconEntity iconFind = iconRepository.findIconByidIcon(id);
 
 		if (iconFind == null) {
-			throw new ResourceNotFoundException(IconEntity.class, id);
+			throw new ResourceNotFoundException();
 		}
 
 		iconFind.setImage(iconEntity.getImage());
@@ -69,8 +70,8 @@ public class IconServiceImpl implements IIconService{
 
 
 	@Override
-	public IconEntity findIcon(Long id) {
-		return iconRepository.findIconByidIcon(id);
+	public Optional<IconEntity> findIcon(Long id) {
+		return iconRepository.findById(id);
 	}
 
 

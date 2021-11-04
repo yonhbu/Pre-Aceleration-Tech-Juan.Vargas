@@ -2,6 +2,7 @@ package co.com.geographic.icons.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.geographic.icons.dto.icon.IconDTOImageAndDenomination;
 import co.com.geographic.icons.dto.icon.IconRqDTO;
 import co.com.geographic.icons.dto.icon.IconRsDTO;
+import co.com.geographic.icons.exception.ResourceNotFoundException;
 import co.com.geographic.icons.model.IconEntity;
 import co.com.geographic.icons.services.IIconService;
 import co.com.geographic.icons.util.ObjectMapperUtils;
@@ -80,10 +82,13 @@ public class IconController {
 	@GetMapping("/{iconId}")
 	public ResponseEntity<IconRsDTO> findIconsforID (@PathVariable ("iconId") Long iconId) {
 
-		IconEntity icon = iIconService.findIcon(iconId);
+		Optional<IconEntity> icon = iIconService.findIcon(iconId);
+		if (!icon.isPresent()) {
+			throw new ResourceNotFoundException ();
+		}
 
 		// convert entity to DTO
-		IconRsDTO iconResponse = ObjectMapperUtils.map(icon, IconRsDTO.class);
+		IconRsDTO iconResponse = ObjectMapperUtils.map(icon.get(), IconRsDTO.class);
 		return new ResponseEntity<>(iconResponse, HttpStatus.OK);
 
 	}
