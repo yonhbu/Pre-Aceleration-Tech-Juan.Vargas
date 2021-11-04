@@ -2,6 +2,7 @@ package co.com.geographic.icons.controller;
 
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.geographic.icons.dto.icon.IconDTOImageAndDenomination;
@@ -83,6 +85,25 @@ public class IconController {
 		return new ResponseEntity<>(iconResponse, HttpStatus.OK);
 
 	}
+	
+	
+	@GetMapping()
+	public ResponseEntity<List<IconRsDTO>> getIconsDetailsByFilters (
+			                               @RequestParam (required = false) String name,
+			                               @RequestParam (required = false) String date,
+			                               @RequestParam (required = false) Long altitude,
+			                               @RequestParam (required = false) Set<Long> countrys,
+			                               @RequestParam (required = false, defaultValue = "ASC") String order) {
+	
+
+		List<IconEntity> listIconFilter = iIconService.getIconByFilters(name,date,altitude,countrys,order);
+
+		// convert entity to DTO
+		List<IconRsDTO> listIconResponseFilter = ObjectMapperUtils.mapAll(listIconFilter, IconRsDTO.class);
+		return new ResponseEntity<>(listIconResponseFilter, HttpStatus.OK);
+
+	}
+	
 	
 	
 

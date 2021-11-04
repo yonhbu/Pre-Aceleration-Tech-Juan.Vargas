@@ -1,10 +1,12 @@
 package co.com.geographic.icons.services.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.com.geographic.icons.dto.icon.IconsFiltersDTO;
 import co.com.geographic.icons.exception.ResourceNotFoundException;
 import co.com.geographic.icons.model.IconEntity;
 import co.com.geographic.icons.repository.IconRepository;
@@ -65,6 +67,18 @@ public class IconServiceImpl implements IIconService{
 	@Override
 	public IconEntity findIcon(Long id) {
 		return iconRepository.findIconByidIcon(id);
+	}
+
+
+
+	@Override
+	public List<IconEntity> getIconByFilters(String name, String date, Long altitude, Set<Long> countrys, String order) {
+		IconsFiltersDTO iconsFiltersDTO = new IconsFiltersDTO (name,date,altitude,countrys,order);
+		
+		//List<IconEntity> iconEntity = iconRepository.findAll(iconSpecification.getByFilter(iconsFiltersDTO));
+		
+		
+		return null;
 	}
 
 
