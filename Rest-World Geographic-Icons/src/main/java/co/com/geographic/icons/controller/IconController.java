@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,13 +30,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("icons")
 @Slf4j
 public class IconController {
 
 	private final IIconService iIconService;
 
 
-	@PostMapping("/icons")
+	@PostMapping()
 	public ResponseEntity<IconRsDTO> insertIcon (@Valid @RequestBody IconRqDTO iconRqDTO) {
 
 		// convert DTO to entity
@@ -51,7 +53,7 @@ public class IconController {
 	}
 
 
-	@GetMapping("/icons")
+	@GetMapping("/fields")
 	public ResponseEntity<List<IconDTOImageAndDenomination>> listIconImageAndDenomination () {
 
 		List<IconEntity> listIcon = iIconService.getAllIcons();
@@ -63,7 +65,7 @@ public class IconController {
 	}
 	
 	
-	@GetMapping("/icons/all")
+	@GetMapping("/all")
 	public ResponseEntity<List<IconRsDTO>> getAllIcons () {
 
 		List<IconEntity> listIcon = iIconService.getAllIcons();
@@ -75,7 +77,7 @@ public class IconController {
 	}
 	
 	
-	@GetMapping("/icons/{iconId}")
+	@GetMapping("/{iconId}")
 	public ResponseEntity<IconRsDTO> findIconsforID (@PathVariable ("iconId") Long iconId) {
 
 		IconEntity icon = iIconService.findIcon(iconId);
@@ -107,7 +109,7 @@ public class IconController {
 	
 	
 
-	@PutMapping("/icons/{iconId}")
+	@PutMapping("/{iconId}")
 	public ResponseEntity<IconRsDTO> updateIcons (@PathVariable ("iconId") Long iconId, @Valid @RequestBody IconRqDTO iconRqDTO) {
 
 		// convert DTO to entity
@@ -123,7 +125,7 @@ public class IconController {
 
 
 
-	@DeleteMapping("/icons/{iconId}")
+	@DeleteMapping("/{iconId}")
 	public ResponseEntity<String> deleteIcon (@PathVariable ("iconId") Long iconId) {
 		try {
 			iIconService.delete(iconId);

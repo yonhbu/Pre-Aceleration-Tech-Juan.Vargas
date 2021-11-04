@@ -10,6 +10,7 @@ import co.com.geographic.icons.dto.icon.IconsFiltersDTO;
 import co.com.geographic.icons.exception.ResourceNotFoundException;
 import co.com.geographic.icons.model.IconEntity;
 import co.com.geographic.icons.repository.IconRepository;
+import co.com.geographic.icons.repository.specifications.IconSpecification;
 import co.com.geographic.icons.services.IIconService;
 
 
@@ -19,6 +20,9 @@ public class IconServiceImpl implements IIconService{
 
 	@Autowired
 	private IconRepository iconRepository;
+	
+	@Autowired
+	private IconSpecification iconSpecification;
 
 
 	@Override
@@ -73,12 +77,8 @@ public class IconServiceImpl implements IIconService{
 
 	@Override
 	public List<IconEntity> getIconByFilters(String name, String date, Long altitude, Set<Long> countrys, String order) {
-		IconsFiltersDTO iconsFiltersDTO = new IconsFiltersDTO (name,date,altitude,countrys,order);
-		
-		//List<IconEntity> iconEntity = iconRepository.findAll(iconSpecification.getByFilter(iconsFiltersDTO));
-		
-		
-		return null;
+		IconsFiltersDTO iconsFiltersDTO = new IconsFiltersDTO (name,date,altitude,countrys,order);	
+		return iconRepository.findAll(iconSpecification.getByFilter(iconsFiltersDTO));
 	}
 
 
