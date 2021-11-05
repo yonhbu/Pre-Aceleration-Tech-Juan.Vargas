@@ -13,7 +13,6 @@ import lombok.Setter;
 public class CountryFiltersDTO {
 	
     private String name;
-    private String numberHabitants;
     private Set<Long> listIdContinent;
     private String order;
     

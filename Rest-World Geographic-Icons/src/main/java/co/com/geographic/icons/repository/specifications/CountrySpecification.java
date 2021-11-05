@@ -37,17 +37,7 @@ public class CountrySpecification {
 			}
 
 
-			if (StringUtils.hasLength(countryFiltersDTO.getNumberHabitants())) {
-				predicates.add(
-						criteriaBuilder.like(
-								criteriaBuilder.lower(root.get("numberInhabitants")),
-								"%" + countryFiltersDTO.getNumberHabitants().toLowerCase() + "%"
-
-								)
-						);
-			}
-
-
+			
 		if (!CollectionUtils.isEmpty(countryFiltersDTO.getListIdContinent())) {
 			Join<ContinentEntity, CountryEntity> join = root.join("continent", JoinType.INNER);
 			Expression<String> continentId = join.get("idContinent");
@@ -60,7 +50,7 @@ public class CountrySpecification {
 
 		//Order
 
-		String orderByField = "numberInhabitants";
+		String orderByField = "denomination";
 		query.orderBy(
 
 				countryFiltersDTO.isASC()?

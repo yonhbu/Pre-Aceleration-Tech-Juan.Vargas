@@ -79,8 +79,8 @@ public class CountryServiceImpl implements ICountryService {
 
 
 	@Override
-	public List<CountryEntity> getCountryByFilters(String name, String numberHabitants, Set<Long> continent, String order) {
-		CountryFiltersDTO countryFiltersDTO = new CountryFiltersDTO (name,numberHabitants,continent,order);	
+	public List<CountryEntity> getCountryByFilters(String name, Set<Long> continent, String order) {
+		CountryFiltersDTO countryFiltersDTO = new CountryFiltersDTO (name,continent,order);	
 		return countryRepository.findAll(countrySpecification.getByFilter(countryFiltersDTO));
 	}
 

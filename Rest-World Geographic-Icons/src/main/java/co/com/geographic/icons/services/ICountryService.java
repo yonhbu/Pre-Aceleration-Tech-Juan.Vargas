@@ -19,7 +19,7 @@ public interface ICountryService {
 
 	public Optional<CountryEntity> findCountryforID(Long countryId);
 
-	public List<CountryEntity> getCountryByFilters(String name, String numberHabitants, Set<Long> continent, String order);
+	public List<CountryEntity> getCountryByFilters(String name, Set<Long> continent, String order);
 		
 
 }	

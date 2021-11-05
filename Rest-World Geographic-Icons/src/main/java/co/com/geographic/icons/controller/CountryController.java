@@ -100,12 +100,11 @@ public class CountryController {
 	@GetMapping()
 	public ResponseEntity<List<CountryRsDTO>> getCountrysDetailsByFilters (
 			                               @RequestParam (required = false) String name,
-			                               @RequestParam (required = false) String numberHabitants,
 			                               @RequestParam (required = false) Set<Long> continent,
 			                               @RequestParam (required = false, defaultValue = "ASC") String order) {
 	
 
-		List<CountryEntity> listCountryFilter = iCountryService.getCountryByFilters(name,numberHabitants,continent,order);
+		List<CountryEntity> listCountryFilter = iCountryService.getCountryByFilters(name,continent,order);
 
 		// convert entity to DTO
 		List<CountryRsDTO> listCountryResponseFilter = ObjectMapperUtils.mapAll(listCountryFilter, CountryRsDTO.class);
