@@ -12,13 +12,82 @@
 					"name": "Geographic Icon",
 					"item": [
 						{
-							"name": "Create Icon",
+							"name": "auth",
+							"item": [
+								{
+									"name": "SingUp",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"username\": \"vargasjuan@gmail.com\",\r\n  \"password\": \"2147483647\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/auth/signup",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"auth",
+												"signup"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Authenticate",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"username\": \"vargasjuan@gmail.com\",\r\n  \"password\": \"2147483647\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/auth/authenticate",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"auth",
+												"authenticate"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Create/Icon",
 							"request": {
 								"method": "POST",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \r\n\t\"image\": \"/src/icon/image/col.jpg\",\r\n    \"denomination\": \"$\",\r\n    \"creationDate\": \"2019-06-12\",\r\n    \"altitude\": \"5000\",\r\n    \"history\": \"El peso ha sido la moneda colombiana desde 1810. En 1837 el peso reemplazó al real a una tasa de cambio de 1 peso = 8 reales, estando dividido inicialmente en 8 reales.\"\r\n}",
+									"raw": "{\r\n\t\"image\": \"/src/icon/image/colombia-plaza-botero.jpg\",\r\n    \"denomination\": \"Pueblo\",\r\n    \"creationDate\": \"2005-10-12\",\r\n    \"altitude\": \"5000\",\r\n    \"history\": \"La Plaza Botero, rodeada por el Museo de Antioquia y el Palacio de Cultura Rafael Uribe Uribe, es un parque exterior de 7,000 m² que exhibe 23 esculturas del artista colombiano Fernando Botero.\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -40,12 +109,118 @@
 							"response": []
 						},
 						{
-							"name": "Consult Field Icon",
+							"name": "Consult/Field",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Aut",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/icons/fields",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"icons",
+										"fields"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/All",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/icons",
+									"raw": "http://localhost:8080/icons/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"icons",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/Id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/icons/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"icons",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/Filter",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/icons?date=2005-10-12",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -53,14 +228,45 @@
 									"port": "8080",
 									"path": [
 										"icons"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2005-10-12"
+										},
+										{
+											"key": "name",
+											"value": "Pueblo",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "ASC",
+											"disabled": true
+										},
+										{
+											"key": "countrys",
+											"value": "7,11",
+											"disabled": true
+										}
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Update Icon",
+							"name": "Update/Icon",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
 								"method": "PUT",
 								"header": [],
 								"body": {
@@ -73,7 +279,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/icons/1",
+									"raw": "http://localhost:8080/icons/5",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -81,19 +287,29 @@
 									"port": "8080",
 									"path": [
 										"icons",
-										"1"
+										"5"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Delete Icon",
+							"name": "Delete/Icon",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/icons/1",
+									"raw": "http://localhost:8080/icons/5",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -101,116 +317,30 @@
 									"port": "8080",
 									"path": [
 										"icons",
-										"1"
+										"5"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Create Country",
+							"name": "Create/Continent",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"image\": \"/src/country/image/col.jpg\",\r\n    \"denomination\": \"$\",\r\n\t\"numberInhabitants\": 50000000,\r\n\t\"surface\": 5000,\r\n    \"idContinent\": 5\r\n}\r\n",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/country",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"country"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update Country",
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"image\": \"/src/country/image/col.jpg\",\r\n    \"denomination\": \"$\",\r\n\t\"numberInhabitants\": 50000000,\r\n\t\"surface\": 6000,\r\n    \"idContinent\": 5\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8080/country/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"country",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Delete Country",
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/country/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"country",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Consult Field Country",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/country",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"country"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Create Continent",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"image\": \"/src/continent/image/Sur_America.jpg\",\r\n    \"denomination\": \"$\"\r\n}\r\n",
+									"raw": "{\r\n\t\"image\": \"/src/continent/image/Sur_America.jpg\",\r\n    \"denomination\": \"America del Norte\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -232,30 +362,200 @@
 							"response": []
 						},
 						{
-							"name": "(Fail) Details Icon",
+							"name": "Consult/All/Continents",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/icons/1",
+									"raw": "http://localhost:8080/continent",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"icons",
-										"1"
+										"continent"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "(Fail) Details Country",
+							"name": "Create/Country",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"image\": \"/src/country/image/col.jpg\",\r\n    \"denomination\": \"Peru\",\r\n\t\"numberInhabitants\": 80000000,\r\n\t\"surface\": 5000,\r\n    \"idContinent\": 19,\r\n    \"icons\": [\r\n         {\r\n\t\"image\": \"/src/icon/image/colombia-plaza-botero.jpg\",\r\n    \"denomination\": \"Goz\",\r\n    \"creationDate\": \"2004-06-12\",\r\n    \"altitude\": \"6000\",\r\n    \"history\": \"La Plaza Botero, rodeada por el Museo de Antioquia y el Palacio de Cultura Rafael Uribe Uribe, es un parque exterior de 7,000 m² que exhibe 23 esculturas del artista colombiano Fernando Botero.\"\r\n      }\r\n             \r\n    ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/country",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/Field/Country",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/country/fields",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country",
+										"fields"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/All/Country",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/country/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/Country/Id",
 							"request": {
 								"method": "GET",
 								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/country/11",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country",
+										"11"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/Country/Filter",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/country?name=Colombia&continent=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"country"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Colombia"
+										},
+										{
+											"key": "continent",
+											"value": "2"
+										},
+										{
+											"key": "order",
+											"value": "ASC",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update/Country",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"image\": \"/src/country/image/colo.jpg\",\r\n    \"denomination\": \"Colombia\",\r\n\t\"numberInhabitants\": 60000000,\r\n\t\"surface\": 6000,\r\n    \"idContinent\": 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8080/country/10",
 									"protocol": "http",
@@ -272,70 +572,20 @@
 							"response": []
 						},
 						{
-							"name": "(Fail) Filter Search Icon",
+							"name": "Delete/Country",
 							"request": {
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/icons?name=denominación",
+									"raw": "http://localhost:8080/country/10",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"icons"
-									],
-									"query": [
-										{
-											"key": "age",
-											"value": "20",
-											"disabled": true
-										},
-										{
-											"key": "idMovie",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "name",
-											"value": "denominación"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "(Fail) Filter Search Movie",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/country?name=denominación",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"country"
-									],
-									"query": [
-										{
-											"key": "genre",
-											"value": "",
-											"disabled": true
-										},
-										{
-											"key": "order",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "name",
-											"value": "denominación"
-										}
+										"country",
+										"10"
 									]
 								}
 							},

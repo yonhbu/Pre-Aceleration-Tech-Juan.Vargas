@@ -12,14 +12,15 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import co.com.geographic.icons.auth.dto.AuthenticationRequestDTO;
 import co.com.geographic.icons.auth.dto.TokenResponseDTO;
 import co.com.geographic.icons.auth.dto.UserRsDTO;
 import co.com.geographic.icons.auth.repository.UserRepository;
 import co.com.geographic.icons.auth.service.impl.IUserService;
 import co.com.geographic.icons.model.UserEntity;
+import co.com.geographic.icons.services.impl.EmailServiceImpl;
 import co.com.geographic.icons.util.ObjectMapperUtils;
 
 
@@ -30,8 +31,11 @@ public class CustomUserDetailService implements IUserService, UserDetailsService
 	@Autowired
 	private UserRepository userRepository;
 	
+	//@Autowired
+	//private PasswordEncoder passwordEncoder;
+	
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	EmailServiceImpl emailServiceImpl;
 	
 	@Autowired
 	private JWTUtil jWTUtil;	
@@ -44,7 +48,6 @@ public class CustomUserDetailService implements IUserService, UserDetailsService
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		UserEntity userEntity = userRepository.findByUsername(username);
-		// convert entity to DTO
 		UserRsDTO userRsDTO = ObjectMapperUtils.map(userEntity, UserRsDTO.class);
 
 		if (userRsDTO != null) {
@@ -58,7 +61,6 @@ public class CustomUserDetailService implements IUserService, UserDetailsService
 
 	@Override
 	public UserRsDTO saveUser(AuthenticationRequestDTO authenticationRequestDTO) {
-		// convert DTO to entity
 		UserEntity userSaveEntity = new UserEntity ();
 		userSaveEntity.setUsername(authenticationRequestDTO.getUsername());	
 		userSaveEntity.setPassword(authenticationRequestDTO.getPassword());
@@ -66,8 +68,9 @@ public class CustomUserDetailService implements IUserService, UserDetailsService
 		//userSaveEntity.setPassword(passwordEncoder.encode(authenticationRequestDTO.getPassword()));
 				
 		UserEntity userRsSave = userRepository.save(userSaveEntity);
-
-		// convert entity to DTO
+		if (userRsSave != null) {
+			emailServiceImpl.sendWelcomeEmailTo(userRsSave.getUsername());
+		}
 		return ObjectMapperUtils.map(userRsSave, UserRsDTO.class);
 	}
 	
