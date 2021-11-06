@@ -9,43 +9,41 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import co.com.geographic.icons.auth.filter.JwtFilterRequest;
 import co.com.geographic.icons.auth.service.CustomUserDetailService;
 
 
 
-
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter { 
-
+	
 	@Autowired
-	private CustomUserDetailService userDetailService;
-
-
+	private CustomUserDetailService customUserDetailService;
+	
+	
 	@Autowired
 	private JwtFilterRequest jwtFilterRequest;
-
-
+	
+	
 
 	@Override 
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception { 
-		auth.userDetailsService(userDetailService);   
+		auth.userDetailsService(customUserDetailService);   
 	}
-
-
-
+	
+	
 	@Bean
-	public BCryptPasswordEncoder passwordEncoder()
-	{
-		return new BCryptPasswordEncoder();
+	public PasswordEncoder passwordEncoder () {
+		return NoOpPasswordEncoder.getInstance();
 	}
-
-
+	
+	
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-
+		
 		http.csrf().disable()
 		.authorizeRequests().antMatchers("/auth/*").permitAll() 
 		.anyRequest().authenticated()
@@ -53,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
 
 		http.addFilterBefore(jwtFilterRequest, UsernamePasswordAuthenticationFilter.class);
-
+		
 	}
 
 
@@ -62,10 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
-
-
-
-
-
+	
+	
+	
+	
+	
 
 }

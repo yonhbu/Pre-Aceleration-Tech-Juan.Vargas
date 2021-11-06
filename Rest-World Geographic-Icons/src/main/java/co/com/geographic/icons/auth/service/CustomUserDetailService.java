@@ -14,8 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import co.com.geographic.icons.auth.dto.AuthenticationRequestDTO;
 import co.com.geographic.icons.auth.dto.TokenResponseDTO;
 import co.com.geographic.icons.auth.dto.UserRsDTO;
@@ -65,7 +63,7 @@ public class CustomUserDetailService implements IUserService, UserDetailsService
 		userSaveEntity.setUsername(authenticationRequestDTO.getUsername());	
 		userSaveEntity.setPassword(authenticationRequestDTO.getPassword());
 		
-		userSaveEntity.setPassword(passwordEncoder.encode(authenticationRequestDTO.getPassword()));
+		//userSaveEntity.setPassword(passwordEncoder.encode(authenticationRequestDTO.getPassword()));
 				
 		UserEntity userRsSave = userRepository.save(userSaveEntity);
 
