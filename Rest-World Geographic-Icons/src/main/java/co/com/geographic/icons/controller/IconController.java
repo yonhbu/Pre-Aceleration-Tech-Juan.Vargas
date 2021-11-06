@@ -22,10 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.geographic.icons.dto.icon.IconDTOImageAndDenomination;
 import co.com.geographic.icons.dto.icon.IconRqDTO;
 import co.com.geographic.icons.dto.icon.IconRsDTO;
-import co.com.geographic.icons.exception.ResourceNotFoundException;
-import co.com.geographic.icons.model.IconEntity;
 import co.com.geographic.icons.services.IIconService;
-import co.com.geographic.icons.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,13 +39,8 @@ public class IconController {
 	@PostMapping()
 	public ResponseEntity<IconRsDTO> insertIcon (@Valid @RequestBody IconRqDTO iconRqDTO) {
 
-		// convert DTO to entity
-		IconEntity iconEntity = ObjectMapperUtils.map(iconRqDTO, IconEntity.class);
-		IconEntity icon = iIconService.save(iconEntity);
-
-		// convert entity to DTO
-		IconRsDTO iconResponse = ObjectMapperUtils.map(icon, IconRsDTO.class);
-		log.info("Request received for Icon insert", icon.toString());
+		IconRsDTO iconResponse = iIconService.save(iconRqDTO);
+		log.info("Request received for Icon insert", iconRqDTO.toString());
 		return new ResponseEntity<>(iconResponse, HttpStatus.CREATED);
 
 
@@ -58,72 +50,51 @@ public class IconController {
 	@GetMapping("/fields")
 	public ResponseEntity<List<IconDTOImageAndDenomination>> listIconImageAndDenomination () {
 
-		List<IconEntity> listIcon = iIconService.getAllIcons();
-
-		// convert entity to DTO
-		List<IconDTOImageAndDenomination> iconResponse = ObjectMapperUtils.mapAll(listIcon, IconDTOImageAndDenomination.class);
-		return new ResponseEntity<>(iconResponse, HttpStatus.OK);
+		List<IconDTOImageAndDenomination> listIconResponse = iIconService.getAllIconsSomeFields();
+		return new ResponseEntity<>(listIconResponse, HttpStatus.OK);
 
 	}
-	
-	
+
+
 	@GetMapping("/all")
 	public ResponseEntity<List<IconRsDTO>> getAllIcons () {
 
-		List<IconEntity> listIcon = iIconService.getAllIcons();
-
-		// convert entity to DTO
-		List<IconRsDTO> iconResponse = ObjectMapperUtils.mapAll(listIcon, IconRsDTO.class);
+		List<IconRsDTO> iconResponse = iIconService.getAllIcons();
 		return new ResponseEntity<>(iconResponse, HttpStatus.OK);
 
 	}
-	
-	
+
+
 	@GetMapping("/{iconId}")
 	public ResponseEntity<IconRsDTO> findIconsforID (@PathVariable ("iconId") Long iconId) {
 
-		Optional<IconEntity> icon = iIconService.findIcon(iconId);
-		if (!icon.isPresent()) {
-			throw new ResourceNotFoundException ();
-		}
-
-		// convert entity to DTO
-		IconRsDTO iconResponse = ObjectMapperUtils.map(icon.get(), IconRsDTO.class);
+		IconRsDTO iconResponse = iIconService.findIcon(iconId);
 		return new ResponseEntity<>(iconResponse, HttpStatus.OK);
 
 	}
-	
-	
+
+
 	@GetMapping()
 	public ResponseEntity<List<IconRsDTO>> getIconsDetailsByFilters (
-			                               @RequestParam (required = false) String name,
-			                               @RequestParam (required = false) String date,
-			                               @RequestParam (required = false) Long altitude,
-			                               @RequestParam (required = false) Set<Long> countrys,
-			                               @RequestParam (required = false, defaultValue = "ASC") String order) {
-	
+			@RequestParam (required = false) String name,
+			@RequestParam (required = false) String date,
+			@RequestParam (required = false) Long altitude,
+			@RequestParam (required = false) Set<Long> countrys,
+			@RequestParam (required = false, defaultValue = "ASC") String order) {
 
-		List<IconEntity> listIconFilter = iIconService.getIconByFilters(name,date,altitude,countrys,order);
 
-		// convert entity to DTO
-		List<IconRsDTO> listIconResponseFilter = ObjectMapperUtils.mapAll(listIconFilter, IconRsDTO.class);
+		List<IconRsDTO> listIconResponseFilter = iIconService.getIconByFilters(name,date,altitude,countrys,order);
 		return new ResponseEntity<>(listIconResponseFilter, HttpStatus.OK);
 
 	}
-	
-	
-	
+
+
+
 
 	@PutMapping("/{iconId}")
 	public ResponseEntity<IconRsDTO> updateIcons (@PathVariable ("iconId") Long iconId, @Valid @RequestBody IconRqDTO iconRqDTO) {
 
-		// convert DTO to entity
-		IconEntity iconEntity = ObjectMapperUtils.map(iconRqDTO, IconEntity.class);
-		IconEntity icon = iIconService.update(iconId, iconEntity);
-
-		// convert entity to DTO
-		IconRsDTO iconResponse = ObjectMapperUtils.map(icon, IconRsDTO.class);
-		log.info("updateIcon() - start: id = {}, icon = {}", iconId, iconRqDTO);
+		IconRsDTO iconResponse = iIconService.update(iconId, iconRqDTO);
 		return new ResponseEntity<>(iconResponse, HttpStatus.OK);
 
 	}
@@ -132,13 +103,9 @@ public class IconController {
 
 	@DeleteMapping("/{iconId}")
 	public ResponseEntity<String> deleteIcon (@PathVariable ("iconId") Long iconId) {
-		try {
-			iIconService.delete(iconId);
-			log.info("Request received for Icon deletion with id= " + iconId);
-			return new ResponseEntity<>("Icon Delete Success", HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>("Icon cannot deleted", HttpStatus.OK);
-		}
+
+		String response = iIconService.delete(iconId);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 
 	}
 

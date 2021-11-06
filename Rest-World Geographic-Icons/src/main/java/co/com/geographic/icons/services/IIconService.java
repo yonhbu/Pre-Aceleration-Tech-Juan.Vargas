@@ -1,25 +1,31 @@
 package co.com.geographic.icons.services;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
-import co.com.geographic.icons.model.IconEntity;
+import co.com.geographic.icons.dto.icon.IconDTOImageAndDenomination;
+import co.com.geographic.icons.dto.icon.IconRqDTO;
+import co.com.geographic.icons.dto.icon.IconRsDTO;
+
 
 
 public interface IIconService {
 	
-	public IconEntity save (IconEntity iconEntity);
+	public IconRsDTO save (IconRqDTO iconRqDTO);
 	
-	public List<IconEntity> getAllIcons ();
+	public List<IconDTOImageAndDenomination> getAllIconsSomeFields();
 	
-	public Optional<IconEntity> findIcon (Long id);
+	public List<IconRsDTO> getAllIcons ();
 	
-	public List<IconEntity> getIconByFilters (String name, String date, Long altitude, Set<Long> countrys, String order);
+	public IconRsDTO findIcon (Long id);
 	
-	public void delete (Long id);
+	public List<IconRsDTO> getIconByFilters (String name, String date, Long altitude, Set<Long> countrys, String order);
 	
-	public IconEntity update (Long id, IconEntity iconEntity);
+	public String delete (Long id);
+	
+	public IconRsDTO update (Long id, IconRqDTO iconRqDTO);
+
+
 	
 
 		
