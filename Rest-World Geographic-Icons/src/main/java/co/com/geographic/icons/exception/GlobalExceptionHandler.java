@@ -37,5 +37,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler  {
 		return  handleExceptionInternal(ex, responseError, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
 	}
 	
+	
+	@ExceptionHandler(value = {UsernameNotFoundException.class})
+	public final ResponseEntity<Object> usernameNotFound (RuntimeException ex, WebRequest request) {      
+		MessageErrorDTO responseError = new MessageErrorDTO (
+				new Date(),
+				HttpStatus.NOT_FOUND.getReasonPhrase(),
+				ex.getMessage(), 
+				request.getDescription(false),
+		        Arrays.asList("Username Not Found"));
+  
+		        
+		return  handleExceptionInternal(ex, responseError, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+	}
+	
+	
 
 }
