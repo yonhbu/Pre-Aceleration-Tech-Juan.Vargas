@@ -2,7 +2,7 @@ package co.com.geographic.icons.model;
 
 
 import java.util.Collection;
-
+import java.util.Collections;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,21 +10,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
-@Data
-@Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name="USER")
 public class UserEntity implements UserDetails {
@@ -38,64 +40,34 @@ public class UserEntity implements UserDetails {
 	private Long idUser;
 	
 	@NotNull
+	@Email(message = "Username must be an Email")
 	@Column(unique = true)
 	private String username;
 	
 	@NotNull
+	@Size(min = 8)
 	private String password;
 	
-	@NotNull
 	boolean enable;
-	
-	@NotNull
 	private boolean accountNonExpired;
-	
-	@NotNull
 	private boolean accountNonLocked;
-	
-	@NotNull
 	private boolean credencialsNonExpired;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
+		return Collections.emptyList();
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return false;
 	}
+
+	
 
 }
