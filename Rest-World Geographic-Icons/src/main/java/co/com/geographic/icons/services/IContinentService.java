@@ -2,14 +2,16 @@ package co.com.geographic.icons.services;
 
 import java.util.List;
 
-import co.com.geographic.icons.model.ContinentEntity;
+import co.com.geographic.icons.dto.continent.ContinentRqDTO;
+import co.com.geographic.icons.dto.continent.ContinentRsDTO;
+
 
 
 public interface IContinentService {
 	
-	public ContinentEntity save (ContinentEntity continentEntity);
+	public ContinentRsDTO save (ContinentRqDTO continentRqDTO);
 	
-	public List<ContinentEntity> getAllContinents();
+	public List<ContinentRsDTO> getAllContinents();
 		
 
 }	
