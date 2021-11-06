@@ -5,11 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import co.com.geographic.icons.controller.IconController;
 import co.com.geographic.icons.dto.icon.IconDTOImageAndDenomination;
 import co.com.geographic.icons.dto.icon.IconRqDTO;
 import co.com.geographic.icons.dto.icon.IconRsDTO;
@@ -37,11 +33,9 @@ public class IconServiceImpl implements IIconService{
 
 	@Override
 	public IconRsDTO save (IconRqDTO iconRqDTO) {
-		// convert DTO to entity
 		IconEntity iconEntity = ObjectMapperUtils.map(iconRqDTO, IconEntity.class);
 		IconEntity icon = iconRepository.save(iconEntity);
 
-		// convert entity to DTO
 		return ObjectMapperUtils.map(icon, IconRsDTO.class);
 	}
 
@@ -59,7 +53,6 @@ public class IconServiceImpl implements IIconService{
 	public List<IconRsDTO> getAllIcons () {
 
 		List<IconEntity> listIcon = (List<IconEntity>) iconRepository.findAll();
-		// convert entity to DTO
 		return  ObjectMapperUtils.mapAll(listIcon, IconRsDTO.class);
 	}
 
@@ -71,7 +64,6 @@ public class IconServiceImpl implements IIconService{
 		if (!icon.isPresent()) {
 			throw new ResourceNotFoundException ();
 		}
-		// convert entity to DTO
 		return ObjectMapperUtils.map(icon.get(), IconRsDTO.class);
 	}
 
@@ -81,8 +73,6 @@ public class IconServiceImpl implements IIconService{
 		IconsFiltersDTO iconsFiltersDTO = new IconsFiltersDTO (name,date,altitude,countrys,order);	
 
 		List<IconEntity> listIconResponseFilter = iconRepository.findAll(iconSpecification.getByFilter(iconsFiltersDTO));
-
-		// convert entity to DTO
 		return ObjectMapperUtils.mapAll(listIconResponseFilter, IconRsDTO.class);
 
 	}
@@ -92,7 +82,6 @@ public class IconServiceImpl implements IIconService{
 	@Override
 	public IconRsDTO update (Long id, IconRqDTO iconRqDTO) {
 
-		// convert DTO to entity
 		IconEntity iconEntity = ObjectMapperUtils.map(iconRqDTO, IconEntity.class);
 		IconEntity iconFind = iconRepository.findIconByidIcon(id);
 
@@ -110,7 +99,6 @@ public class IconServiceImpl implements IIconService{
 		log.info("updateIcon() - start: id = {}, icon = {}", id, iconRqDTO);
 		iconRepository.save(iconFind);
 
-		// convert entity to DTO
 		return ObjectMapperUtils.map(iconFind, IconRsDTO.class);
 
 	}

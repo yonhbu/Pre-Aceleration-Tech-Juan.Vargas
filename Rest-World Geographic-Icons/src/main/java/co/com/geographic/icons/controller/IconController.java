@@ -2,7 +2,6 @@ package co.com.geographic.icons.controller;
 
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.Valid;
