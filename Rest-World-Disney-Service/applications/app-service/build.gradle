@@ -1,9 +1,10 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+	implementation project(':repository-commons')
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version: '2.4.2'
-	implementation project(':api-rest')
 	compile 'org.reactivecommons.utils:object-mapper:0.1.0'
+	implementation project(':api-rest')
 	implementation project(':jpa-repository')
     implementation project(':model')
     implementation project(':usecase')

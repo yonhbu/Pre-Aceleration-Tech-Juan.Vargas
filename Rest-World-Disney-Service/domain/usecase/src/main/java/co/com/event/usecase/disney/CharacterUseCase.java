@@ -1,11 +1,15 @@
 package co.com.event.usecase.disney;
 
-
-
 import java.util.List;
 
+
 import co.com.disney.model.CharacterEntity;
+import co.com.disney.model.dto.request.CharacterRqDTO;
+import co.com.disney.model.dto.response.CharacterDTONameAndImage;
+import co.com.disney.model.dto.response.CharacterRsDTO;
+import co.com.disney.model.exception.ResourceNotFoundException;
 import co.com.disney.model.gateways.CharacterGateway;
+import co.com.event.usecase.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -14,25 +18,63 @@ public class CharacterUseCase {
 	private final CharacterGateway characterGateway;
 
 
-	public CharacterEntity saveCharacter (CharacterEntity character) {
-		return characterGateway.createCharacter(character);
-	}
-	
-	
-	public List<CharacterEntity> getListCharacterNameAndImage() {
-		return characterGateway.findCharacter();
+	public CharacterRsDTO saveCharacter (CharacterRqDTO characterRqDTO) {
+		CharacterEntity characterEntity = ObjectMapperUtils.map(characterRqDTO, CharacterEntity.class);
+		CharacterEntity character = characterGateway.save(characterEntity);
+		return ObjectMapperUtils.map(character, CharacterRsDTO.class);
 	}
 
 
-	public CharacterEntity editCharacter(Long characterId, CharacterEntity characterEntity) {
-		return characterGateway.updateCharacter(characterId, characterEntity);
+	public List<CharacterDTONameAndImage> getListCharacterNameAndImage () {
+		return characterGateway.getListCharacterNameAndImage();
+
+	}
+
+	public List<CharacterRsDTO> getAllIcons() {
+		List<CharacterEntity> listCharacters = characterGateway.findAllCharacters();
+		return  ObjectMapperUtils.mapAll(listCharacters, CharacterRsDTO.class);
 	}
 
 
-	public void deleteCharacter(Long characterId) {
-		characterGateway.deleteCharacter(characterId);
+	public CharacterRsDTO findCharacter(Long characterId) {
+		CharacterEntity character = characterGateway.findCharacter (characterId);
+		return ObjectMapperUtils.map(character, CharacterRsDTO.class);
+	}
+
+
+	public CharacterRsDTO updateCharacter(Long characterId, CharacterRqDTO characterRqDTO) {
+		CharacterEntity characterEntity = ObjectMapperUtils.map(characterRqDTO, CharacterEntity.class);
+		CharacterEntity characterFind = characterGateway.findCharacter(characterId);
+
+		if (characterFind == null) {
+			throw new ResourceNotFoundException();
+		}
+
+		characterFind.setImage(characterEntity.getImage());
+		characterFind.setName(characterEntity.getName());
+		characterFind.setWeight(characterEntity.getWeight());
+		characterFind.setAge(characterEntity.getAge());
+		characterFind.setHistory(characterEntity.getHistory());
+		characterFind.setMovieID(characterEntity.getMovieID());
+
+		characterGateway.save(characterEntity);
+		return ObjectMapperUtils.map(characterFind, CharacterRsDTO.class);
 
 	}
+
+
+	public String deleteCharacter(Long characterId) {
+		try {
+			characterGateway.deleteCharacter(characterId);
+			return "Character Delete Success";
+		} catch (Exception e) {
+			return "Character cannot deleted";
+		}	
+
+	}
+
+
+
 
 
 

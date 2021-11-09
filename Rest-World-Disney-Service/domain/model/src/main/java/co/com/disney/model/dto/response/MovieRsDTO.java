@@ -2,8 +2,6 @@ package co.com.disney.model.dto.response;
 
 import java.time.LocalDate;
 import java.util.List;
-
-import co.com.disney.model.CharacterEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +18,6 @@ public class MovieRsDTO {
 	private String title;
 	private LocalDate creationDate;	
 	private Integer rating;
-    private List<CharacterEntity> associatedCharacter;
+    //private List<CharacterRsDTO> associatedCharacter;
 
 }

@@ -4,16 +4,19 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import co.com.disney.jpa.characterjpa.CharacterDataJPA;
-import co.com.disney.jpa.genderjpa.GenderDataJPA;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,8 +46,9 @@ public class MovieDataJPA implements Serializable {
 	private LocalDate creationDate;	
 	
 	private Integer rating;
-	
-   // private List<CharacterDataJPA> associatedCharacter;
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "movieID", cascade = CascadeType.ALL)
+    private List<CharacterDataJPA> associatedCharacter;
     
 }
     

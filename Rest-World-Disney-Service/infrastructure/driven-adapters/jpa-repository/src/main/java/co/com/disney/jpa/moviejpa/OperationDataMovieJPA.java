@@ -9,7 +9,7 @@ import co.com.disney.jpa.characterjpa.CharacterDataJPA;
 import co.com.disney.jpa.util.ObjectMapperUtils;
 import co.com.disney.model.CharacterEntity;
 import co.com.disney.model.MovieEntity;
-import co.com.disney.model.commons.ResourceNotFoundException;
+import co.com.disney.model.exception.ResourceNotFoundException;
 import co.com.disney.model.gateways.MovieGateway;
 import lombok.RequiredArgsConstructor;
 
@@ -44,7 +44,7 @@ public class OperationDataMovieJPA implements MovieGateway {
 		MovieDataJPA movieFindDataJPA = movieRepositoryJPA.findMovieDataJPAByidMovie(id);
 
 		if (movieFindDataJPA == null) {
-			throw new ResourceNotFoundException(MovieEntity.class, id);
+			throw new ResourceNotFoundException();
 		}
 
 		movieFindDataJPA.setImage(movieEntity.getImage());

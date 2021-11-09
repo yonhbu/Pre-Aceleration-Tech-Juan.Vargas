@@ -1,12 +1,14 @@
 package co.com.disney.jpa.characterjpa;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
 import co.com.disney.jpa.util.ObjectMapperUtils;
 import co.com.disney.model.CharacterEntity;
-import co.com.disney.model.commons.ResourceNotFoundException;
+import co.com.disney.model.dto.response.CharacterDTONameAndImage;
+import co.com.disney.model.exception.ResourceNotFoundException;
 import co.com.disney.model.gateways.CharacterGateway;
 import lombok.RequiredArgsConstructor;
 
@@ -16,63 +18,81 @@ import lombok.RequiredArgsConstructor;
 public class OperationDataCharacterJPA implements CharacterGateway {
 
 	private final CharacterRepositoryJPA characterRepositoryJPA;
+	
 
 	@Override
-	public CharacterEntity createCharacter(CharacterEntity characterEntity) {
+	public CharacterEntity save (CharacterEntity characterEntity) {
 
-		// Convert Entity Domain to Entity JPA
 		CharacterDataJPA characterRequest =  ObjectMapperUtils.map(characterEntity, CharacterDataJPA.class);
 		CharacterDataJPA characterDataJPA = characterRepositoryJPA.save(characterRequest);
-
-		// Convert Entity JPA to Entity Domain
 		return ObjectMapperUtils.map(characterDataJPA, CharacterEntity.class);
 
 
 	}
 	
+
+	@Override
+	public List<CharacterDTONameAndImage> getListCharacterNameAndImage() {
+		List<CharacterDataJPA> listCharacterDataJPA = (List<CharacterDataJPA>) characterRepositoryJPA.findAll();	
+		return ObjectMapperUtils.mapAll(listCharacterDataJPA, CharacterDTONameAndImage.class);
+	}
+
+	
 	
 	@Override
-	public List<CharacterEntity> findCharacter () {
+	public List<CharacterEntity> findAllCharacters() {
 		List<CharacterDataJPA> listCharacterDataJPA = (List<CharacterDataJPA>) characterRepositoryJPA.findAll();	
-		// Convert Entity JPA to Entity Domain
 		return ObjectMapperUtils.mapAll(listCharacterDataJPA, CharacterEntity.class);
-
 	}
+	
+	
+
+	@Override
+	public CharacterEntity findCharacter(Long characterId) {
+		Optional<CharacterDataJPA> characterDataJPA = characterRepositoryJPA.findById(characterId);
+		if (!characterDataJPA.isPresent()) {
+			throw new ResourceNotFoundException ();
+		}
+		return ObjectMapperUtils.map(characterDataJPA.get(), CharacterEntity.class);
+	}
+
+
+	
 
 	@Override
 	public CharacterEntity updateCharacter (Long id, CharacterEntity characterEntity) {
+		
+		CharacterDataJPA character = ObjectMapperUtils.map(characterEntity, CharacterDataJPA.class);
+		CharacterDataJPA characterFind = characterRepositoryJPA.findByIdCharacter(id);
 
-		CharacterDataJPA characterFindDataJPA = characterRepositoryJPA.findCharacterByIdCharacter(id);
-
-		if (characterFindDataJPA == null) {
-			throw new ResourceNotFoundException(CharacterEntity.class, id);
+		if (characterFind == null) {
+			throw new ResourceNotFoundException();
 		}
 
-		characterFindDataJPA.setImage(characterEntity.getImage());
-		characterFindDataJPA.setName(characterEntity.getName());
-		characterFindDataJPA.setAge(characterEntity.getAge());
-		characterFindDataJPA.setWeight(characterEntity.getWeight());
-		characterFindDataJPA.setHistory(characterEntity.getHistory());
+		characterFind.setImage(character.getImage());
+		characterFind.setName(character.getName());
+		characterFind.setAge(character.getAge());
+		characterFind.setWeight(character.getWeight());
+		characterFind.setHistory(character.getHistory());
+		characterFind.setMovieID(character.getMovieID());
 
-
-		characterRepositoryJPA.save(characterFindDataJPA);
-		// Convert Entity JPA to Entity Domain
-		return ObjectMapperUtils.map(characterFindDataJPA, CharacterEntity.class);
+		characterRepositoryJPA.save(characterFind);
+		return ObjectMapperUtils.map(characterFind, CharacterEntity.class);
 
 	}
 
 	@Override
-	public void deleteCharacter(Long id) {
-		characterRepositoryJPA.deleteById(id);
+	public String deleteCharacter(Long id) {
+		
+		try {
+			characterRepositoryJPA.deleteById(id);
+			return "Character Delete Success";
+		} catch (Exception e) {
+			return "Character cannot deleted";
+		}
+		
 	}
 
-
-
-	@Override
-	public List<CharacterEntity> findCharacterDetail() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
 

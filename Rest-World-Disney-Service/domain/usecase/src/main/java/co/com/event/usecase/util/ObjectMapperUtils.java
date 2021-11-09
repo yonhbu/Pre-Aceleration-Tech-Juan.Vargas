@@ -1,4 +1,4 @@
-package co.com.disney.util;
+package co.com.event.usecase.util;
 
 import java.util.Collection;
 import java.util.List;

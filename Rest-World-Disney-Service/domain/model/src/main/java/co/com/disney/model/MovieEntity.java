@@ -21,7 +21,6 @@ public class MovieEntity {
 	private Integer rating;
     private List<CharacterEntity> associatedCharacter;
     
-    
-
+   
 
 }
