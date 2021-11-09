@@ -18,6 +18,7 @@ public class MovieRsDTO {
 	private String title;
 	private LocalDate creationDate;	
 	private Integer rating;
+	private Long idGenre;
     private List<CharacterRsDTO> character;
 
 }

@@ -16,11 +16,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import co.com.disney.jpa.characterjpa.CharacterDataJPA;
+import co.com.disney.jpa.genderjpa.GenderDataJPA;
+import co.com.disney.model.GenderEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -50,6 +53,13 @@ public class MovieDataJPA implements Serializable {
 	private LocalDate creationDate;	
 	
 	private Integer rating;
+	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinColumn (name = "id_Genre", insertable = false, updatable = false)
+	private GenderDataJPA genre;
+	
+	@Column (name = "id_Genre", nullable = false)
+	private Long idGenre;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "FK_rel_character_movie",

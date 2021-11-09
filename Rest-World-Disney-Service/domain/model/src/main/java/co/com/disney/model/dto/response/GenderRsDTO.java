@@ -1,7 +1,5 @@
-package co.com.disney.model;
+package co.com.disney.model.dto.response;
 
-
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,12 +10,11 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class GenderEntity {	
+public class GenderRsDTO {	
 	
 	private Long idGender;
 	private String name;
 	private String image;   
-	private List<MovieEntity> movie;
   
 
 }

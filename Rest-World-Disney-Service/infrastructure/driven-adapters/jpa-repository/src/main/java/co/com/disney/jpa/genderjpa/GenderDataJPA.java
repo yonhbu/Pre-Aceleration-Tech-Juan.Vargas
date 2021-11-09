@@ -3,15 +3,17 @@ package co.com.disney.jpa.genderjpa;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-import co.com.disney.model.MovieEntity;
+import co.com.disney.jpa.moviejpa.MovieDataJPA;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,15 +32,16 @@ public class GenderDataJPA implements Serializable {
 	
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "id_gender")
+	@Column (name = "id_Gender")
 	@Id	
 	private Long idGender;
 	
 	private String name;
 	
 	private String image;  
-	  
-	//private List<MovieEntity> associatedMovie;
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "genre", cascade = CascadeType.ALL)
+	private List<MovieDataJPA> movie;
 
 }
     

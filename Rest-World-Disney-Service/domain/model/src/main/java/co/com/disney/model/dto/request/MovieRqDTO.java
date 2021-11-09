@@ -10,6 +10,7 @@ public class MovieRqDTO  {
 	private String image;
 	private String title;
 	private LocalDate creationDate;	
+	private Long idGenre;
 	private Integer rating;
     private List<CharacterRqDTO> character;
 	

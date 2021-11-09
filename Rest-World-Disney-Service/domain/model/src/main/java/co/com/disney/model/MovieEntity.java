@@ -19,6 +19,8 @@ public class MovieEntity {
 	private String title;
 	private LocalDate creationDate;	
 	private Integer rating;
+	private GenderEntity genre;
+	private Long idGenre;
     private List<CharacterEntity> character;
     
    
