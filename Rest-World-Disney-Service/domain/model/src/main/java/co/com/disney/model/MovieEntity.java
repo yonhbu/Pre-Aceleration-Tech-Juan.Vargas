@@ -19,7 +19,7 @@ public class MovieEntity {
 	private String title;
 	private LocalDate creationDate;	
 	private Integer rating;
-    private List<CharacterEntity> associatedCharacter;
+    private List<CharacterEntity> character;
     
    
 

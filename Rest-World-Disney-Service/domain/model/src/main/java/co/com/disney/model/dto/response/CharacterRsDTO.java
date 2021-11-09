@@ -20,6 +20,5 @@ public class CharacterRsDTO {
 	private Integer age;
 	private Integer weight;
 	private String history;
-	private List<MovieRsDTO> movieID;
 
 }

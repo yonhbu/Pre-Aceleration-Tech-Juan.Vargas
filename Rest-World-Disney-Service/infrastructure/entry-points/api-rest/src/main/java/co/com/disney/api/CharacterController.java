@@ -49,7 +49,7 @@ public class CharacterController {
 
 	@GetMapping("/all")
 	public ResponseEntity<List<CharacterRsDTO>> getAll () {
-		List<CharacterRsDTO> characterResponse = characterUseCase.getAllIcons();
+		List<CharacterRsDTO> characterResponse = characterUseCase.getAllCharacter();
 		return new ResponseEntity<>(characterResponse, HttpStatus.OK);
 
 	}

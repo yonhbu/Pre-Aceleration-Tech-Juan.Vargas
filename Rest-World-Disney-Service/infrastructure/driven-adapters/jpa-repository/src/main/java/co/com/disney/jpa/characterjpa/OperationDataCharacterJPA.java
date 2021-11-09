@@ -30,15 +30,6 @@ public class OperationDataCharacterJPA implements CharacterGateway {
 
 	}
 	
-
-	@Override
-	public List<CharacterDTONameAndImage> getListCharacterNameAndImage() {
-		List<CharacterDataJPA> listCharacterDataJPA = (List<CharacterDataJPA>) characterRepositoryJPA.findAll();	
-		return ObjectMapperUtils.mapAll(listCharacterDataJPA, CharacterDTONameAndImage.class);
-	}
-
-	
-	
 	@Override
 	public List<CharacterEntity> findAllCharacters() {
 		List<CharacterDataJPA> listCharacterDataJPA = (List<CharacterDataJPA>) characterRepositoryJPA.findAll();	
@@ -74,7 +65,7 @@ public class OperationDataCharacterJPA implements CharacterGateway {
 		characterFind.setAge(character.getAge());
 		characterFind.setWeight(character.getWeight());
 		characterFind.setHistory(character.getHistory());
-		characterFind.setMovieID(character.getMovieID());
+		characterFind.setListMovie(character.getListMovie());
 
 		characterRepositoryJPA.save(characterFind);
 		return ObjectMapperUtils.map(characterFind, CharacterEntity.class);

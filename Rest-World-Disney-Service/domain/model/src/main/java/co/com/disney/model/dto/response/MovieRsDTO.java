@@ -18,6 +18,6 @@ public class MovieRsDTO {
 	private String title;
 	private LocalDate creationDate;	
 	private Integer rating;
-    //private List<CharacterRsDTO> associatedCharacter;
+    private List<CharacterRsDTO> character;
 
 }

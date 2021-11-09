@@ -2,10 +2,12 @@ package co.com.disney.jpa.characterjpa;
 
 import java.io.Serializable;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -45,14 +47,8 @@ public class CharacterDataJPA implements Serializable {
 	
 	private String history;
 
-
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "FK_rel_character_movie",
-	joinColumns = {
-			@JoinColumn(name = "id_character", nullable = false)},
-	inverseJoinColumns = {
-			@JoinColumn(name = "id_movie", nullable = false)})
-	private List<MovieDataJPA> movieID;
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "character", cascade = CascadeType.ALL)
+	private List<MovieDataJPA> listMovie;
 
 
 }

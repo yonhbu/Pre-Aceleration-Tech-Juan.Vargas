@@ -2,12 +2,10 @@ package co.com.disney.jpa.moviejpa;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Component;
-
-import co.com.disney.jpa.characterjpa.CharacterDataJPA;
 import co.com.disney.jpa.util.ObjectMapperUtils;
-import co.com.disney.model.CharacterEntity;
 import co.com.disney.model.MovieEntity;
 import co.com.disney.model.exception.ResourceNotFoundException;
 import co.com.disney.model.gateways.MovieGateway;
@@ -18,56 +16,70 @@ import lombok.RequiredArgsConstructor;
 public class OperationDataMovieJPA implements MovieGateway {
 
 	private final MovieRepositoryJPA movieRepositoryJPA;
+	
+	
 
 	@Override
-	public MovieEntity createMovie(MovieEntity movieEntity) {
-		
-		// Convert Entity Domain to Entity JPA
+	public MovieEntity save (MovieEntity movieEntity) {
 		MovieDataJPA movieRequest =  ObjectMapperUtils.map(movieEntity, MovieDataJPA.class);
 		MovieDataJPA movieDataJPA = movieRepositoryJPA.save(movieRequest);
-
-		// Convert Entity JPA to Entity Domain
 		return ObjectMapperUtils.map(movieDataJPA, MovieEntity.class);
 	}
 
 
 	@Override
-	public List<MovieEntity> findMovie() {
+	public List<MovieEntity> findAllMovies () {
 		List<MovieDataJPA> listMovieDataJPA = (List<MovieDataJPA>) movieRepositoryJPA.findAll();	
-		// Convert Entity JPA to Entity Domain
 		return ObjectMapperUtils.mapAll(listMovieDataJPA, MovieEntity.class);
 	}
 
+
+
 	@Override
-	public MovieEntity updateMovie(Long id, MovieEntity movieEntity) {
-		
-		MovieDataJPA movieFindDataJPA = movieRepositoryJPA.findMovieDataJPAByidMovie(id);
+	public MovieEntity findMovie (Long id) {
+		Optional<MovieDataJPA> movieDataJPA = movieRepositoryJPA.findById(id);
+		if (!movieDataJPA.isPresent()) {
+			throw new ResourceNotFoundException ();
+		}
+		return ObjectMapperUtils.map(movieDataJPA.get(), MovieEntity.class);
+	}
+
+
+
+
+	@Override
+	public MovieEntity update (Long id, MovieEntity movieEntity) {
+
+		MovieDataJPA movie = ObjectMapperUtils.map(movieEntity, MovieDataJPA.class);
+		MovieDataJPA movieFindDataJPA = movieRepositoryJPA.findByidMovie(id);
 
 		if (movieFindDataJPA == null) {
 			throw new ResourceNotFoundException();
 		}
 
-		movieFindDataJPA.setImage(movieEntity.getImage());
-		movieFindDataJPA.setTitle(movieEntity.getTitle());
-		movieFindDataJPA.setCreationDate(movieEntity.getCreationDate());
-		movieFindDataJPA.setRating(movieEntity.getRating());
+		movieFindDataJPA.setImage(movie.getImage());
+		movieFindDataJPA.setTitle(movie.getTitle());
+		movieFindDataJPA.setCreationDate(movie.getCreationDate());
+		movieFindDataJPA.setRating(movie.getRating());
+		movieFindDataJPA.setCharacter(movie.getCharacter());
 
 		movieRepositoryJPA.save(movieFindDataJPA);
-		// Convert Entity JPA to Entity Domain
 		return ObjectMapperUtils.map(movieFindDataJPA, MovieEntity.class);
 	}
 
 	@Override
-	public void deleteMovie(Long id) {
-		movieRepositoryJPA.deleteById(id);
-		
-	}
-	
-	
-	@Override
-	public List<MovieEntity> findMovieDetail() {
-		return null;
-	
+	public String delete (Long id) {
+		try {
+			movieRepositoryJPA.deleteById(id);
+			return "Movie Delete Success";
+		} catch (Exception e) {
+			return "Movie cannot deleted";
+		}
+
 	}
 
+
+
 }
+
+

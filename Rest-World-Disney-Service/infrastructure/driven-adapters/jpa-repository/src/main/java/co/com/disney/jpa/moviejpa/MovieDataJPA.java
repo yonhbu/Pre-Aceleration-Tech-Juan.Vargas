@@ -3,6 +3,8 @@ package co.com.disney.jpa.moviejpa;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -47,8 +51,13 @@ public class MovieDataJPA implements Serializable {
 	
 	private Integer rating;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "movieID", cascade = CascadeType.ALL)
-    private List<CharacterDataJPA> associatedCharacter;
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "FK_rel_character_movie",
+	joinColumns = {
+			@JoinColumn(name = "id_movie", nullable = false)},
+	inverseJoinColumns = {
+			@JoinColumn(name = "id_character", nullable = false)})
+    private List<CharacterDataJPA> character;
     
 }
     

@@ -26,11 +26,11 @@ public class CharacterUseCase {
 
 
 	public List<CharacterDTONameAndImage> getListCharacterNameAndImage () {
-		return characterGateway.getListCharacterNameAndImage();
-
+		List<CharacterEntity> listCharacters = characterGateway.findAllCharacters();
+		return  ObjectMapperUtils.mapAll(listCharacters, CharacterDTONameAndImage.class);
 	}
 
-	public List<CharacterRsDTO> getAllIcons() {
+	public List<CharacterRsDTO> getAllCharacter() {
 		List<CharacterEntity> listCharacters = characterGateway.findAllCharacters();
 		return  ObjectMapperUtils.mapAll(listCharacters, CharacterRsDTO.class);
 	}
@@ -55,7 +55,6 @@ public class CharacterUseCase {
 		characterFind.setWeight(characterEntity.getWeight());
 		characterFind.setAge(characterEntity.getAge());
 		characterFind.setHistory(characterEntity.getHistory());
-		characterFind.setMovieID(characterEntity.getMovieID());
 
 		characterGateway.save(characterEntity);
 		return ObjectMapperUtils.map(characterFind, CharacterRsDTO.class);

@@ -20,7 +20,7 @@ public class CharacterEntity    {
 	private Integer age;
 	private Integer weight;
 	private String history;
-	private List<MovieEntity> movieID;
+	private List<MovieEntity> listMovie;
 
 
 }

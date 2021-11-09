@@ -2,8 +2,6 @@ package co.com.disney.model.dto.request;
 
 import java.time.LocalDate;
 import java.util.List;
-
-import co.com.disney.model.CharacterEntity;
 import lombok.Data;
 
 @Data
@@ -13,7 +11,7 @@ public class MovieRqDTO  {
 	private String title;
 	private LocalDate creationDate;	
 	private Integer rating;
-    private List<CharacterEntity> associatedCharacter;
+    private List<CharacterRqDTO> character;
 	
     
 
