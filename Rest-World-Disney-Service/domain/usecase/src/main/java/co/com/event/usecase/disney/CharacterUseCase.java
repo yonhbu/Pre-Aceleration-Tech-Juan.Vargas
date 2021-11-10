@@ -1,7 +1,7 @@
 package co.com.event.usecase.disney;
 
 import java.util.List;
-
+import java.util.Set;
 
 import co.com.disney.model.CharacterEntity;
 import co.com.disney.model.dto.request.CharacterRqDTO;
@@ -40,6 +40,12 @@ public class CharacterUseCase {
 		CharacterEntity character = characterGateway.findCharacter (characterId);
 		return ObjectMapperUtils.map(character, CharacterRsDTO.class);
 	}
+	
+
+	public List<CharacterRsDTO> getCharactersByFilters(String name, Integer age, Set<Long> movies, String order) {
+		List<CharacterEntity> listCharacterResponseFilter = characterGateway.getCharactersByFilters(name, age, movies, order);
+		return ObjectMapperUtils.mapAll(listCharacterResponseFilter, CharacterRsDTO.class);
+	}
 
 
 	public CharacterRsDTO updateCharacter(Long characterId, CharacterRqDTO characterRqDTO) {
@@ -71,8 +77,6 @@ public class CharacterUseCase {
 		}	
 
 	}
-
-
 
 
 

@@ -4,6 +4,7 @@ package co.com.disney.api;
 
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.disney.model.dto.request.CharacterRqDTO;
@@ -60,6 +62,20 @@ public class CharacterController {
 
 		CharacterRsDTO characterResponse = characterUseCase.findCharacter(characterId);
 		return new ResponseEntity<>(characterResponse, HttpStatus.OK);
+
+	}
+
+	
+	@GetMapping()
+	public ResponseEntity<List<CharacterRsDTO>> getCharacterDetailsByFilters (
+			@RequestParam (required = false) String name,
+			@RequestParam (required = false) Integer age,
+			@RequestParam (required = false) Set<Long> movies,
+			@RequestParam (required = false, defaultValue = "ASC") String order) {
+
+
+		List<CharacterRsDTO> listCharacterResponseFilter = characterUseCase.getCharactersByFilters(name,age,movies,order);
+		return new ResponseEntity<>(listCharacterResponseFilter, HttpStatus.OK);
 
 	}
 

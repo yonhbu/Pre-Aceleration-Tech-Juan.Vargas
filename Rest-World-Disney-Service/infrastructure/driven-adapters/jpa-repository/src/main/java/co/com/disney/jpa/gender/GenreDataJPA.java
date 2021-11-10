@@ -1,4 +1,4 @@
-package co.com.disney.jpa.genderjpa;
+package co.com.disney.jpa.gender;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import co.com.disney.jpa.moviejpa.MovieDataJPA;
+import co.com.disney.jpa.movie.MovieDataJPA;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,18 +25,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="GENDER")
-public class GenderDataJPA implements Serializable {
+@Table(name="GENRE")
+public class GenreDataJPA implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "id_Gender")
+	@Column (name = "id_Genre")
 	@Id	
-	private Long idGender;
+	private Long idGenre;
 	
-	private String name;
+	private String title;
 	
 	private String image;  
 	

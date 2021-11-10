@@ -1,13 +1,13 @@
-package co.com.disney.jpa.characterjpa;
+package co.com.disney.jpa.character;
 
 import java.util.List;
 import java.util.Optional;
-
+import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import co.com.disney.jpa.util.ObjectMapperUtils;
 import co.com.disney.model.CharacterEntity;
-import co.com.disney.model.dto.response.CharacterDTONameAndImage;
+import co.com.disney.model.dto.request.CharactersFiltersDTO;
 import co.com.disney.model.exception.ResourceNotFoundException;
 import co.com.disney.model.gateways.CharacterGateway;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 public class OperationDataCharacterJPA implements CharacterGateway {
 
 	private final CharacterRepositoryJPA characterRepositoryJPA;
+	
+	private final CharacterSpecification iconSpecification;
 	
 
 	@Override
@@ -45,6 +47,16 @@ public class OperationDataCharacterJPA implements CharacterGateway {
 			throw new ResourceNotFoundException ();
 		}
 		return ObjectMapperUtils.map(characterDataJPA.get(), CharacterEntity.class);
+	}
+
+	
+	
+	@Override
+	public List<CharacterEntity> getCharactersByFilters(String name, Integer age, Set<Long> movies, String order) {
+		CharactersFiltersDTO charactersFiltersDTO = new CharactersFiltersDTO (name,age,movies,order);	
+
+		List<CharacterDataJPA> listCharacterResponseFilter = characterRepositoryJPA.findAll(iconSpecification.getByFilter(charactersFiltersDTO));
+		return ObjectMapperUtils.mapAll(listCharacterResponseFilter, CharacterEntity.class);
 	}
 
 
@@ -83,6 +95,7 @@ public class OperationDataCharacterJPA implements CharacterGateway {
 		}
 		
 	}
+
 
 
 

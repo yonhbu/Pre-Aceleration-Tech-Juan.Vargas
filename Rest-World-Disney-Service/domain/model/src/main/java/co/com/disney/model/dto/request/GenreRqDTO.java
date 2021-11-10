@@ -5,9 +5,9 @@ import lombok.Data;
 
 
 @Data
-public class GenderRqDTO {
+public class GenreRqDTO {
 
-	private String name;
+	private String title;
 	private String image; 
 	
 }

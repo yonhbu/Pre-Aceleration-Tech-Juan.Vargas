@@ -1,7 +1,7 @@
 package co.com.disney.model;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,9 +19,9 @@ public class MovieEntity {
 	private String title;
 	private LocalDate creationDate;	
 	private Integer rating;
-	private GenderEntity genre;
+	private GenreEntity genre;
 	private Long idGenre;
-    private List<CharacterEntity> character;
+    private Set<CharacterEntity> character;
     
    
 

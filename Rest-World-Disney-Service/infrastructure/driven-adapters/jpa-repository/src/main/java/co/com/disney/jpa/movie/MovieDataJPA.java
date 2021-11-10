@@ -1,10 +1,8 @@
-package co.com.disney.jpa.moviejpa;
+package co.com.disney.jpa.movie;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,11 +17,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import co.com.disney.jpa.characterjpa.CharacterDataJPA;
-import co.com.disney.jpa.genderjpa.GenderDataJPA;
-import co.com.disney.model.GenderEntity;
+import co.com.disney.jpa.character.CharacterDataJPA;
+import co.com.disney.jpa.gender.GenreDataJPA;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,6 +36,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="MOVIE")
+@SQLDelete(sql = "update movie SET deleted = true where id_movie = ?")
+@Where(clause = "deleted = false")
 public class MovieDataJPA implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -56,7 +58,7 @@ public class MovieDataJPA implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn (name = "id_Genre", insertable = false, updatable = false)
-	private GenderDataJPA genre;
+	private GenreDataJPA genre;
 	
 	@Column (name = "id_Genre", nullable = false)
 	private Long idGenre;
@@ -68,6 +70,9 @@ public class MovieDataJPA implements Serializable {
 	inverseJoinColumns = {
 			@JoinColumn(name = "id_character", nullable = false)})
     private List<CharacterDataJPA> character;
+	
+	@Builder.Default
+    private boolean deleted = Boolean.FALSE;
     
 }
     

@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class GenderEntity {	
+public class GenreEntity {	
 	
-	private Long idGender;
-	private String name;
+	private Long idGenre;
+	private String title;
 	private String image;   
 	private List<MovieEntity> movie;
   

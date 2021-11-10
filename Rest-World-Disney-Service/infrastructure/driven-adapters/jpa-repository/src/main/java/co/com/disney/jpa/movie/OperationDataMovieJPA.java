@@ -1,12 +1,14 @@
-package co.com.disney.jpa.moviejpa;
+package co.com.disney.jpa.movie;
 
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 import co.com.disney.jpa.util.ObjectMapperUtils;
 import co.com.disney.model.MovieEntity;
+import co.com.disney.model.dto.request.MoviesFiltersDTO;
 import co.com.disney.model.exception.ResourceNotFoundException;
 import co.com.disney.model.gateways.MovieGateway;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 public class OperationDataMovieJPA implements MovieGateway {
 
 	private final MovieRepositoryJPA movieRepositoryJPA;
+	
+	private final MovieSpecification movieSpecification;
 	
 	
 
@@ -42,6 +46,15 @@ public class OperationDataMovieJPA implements MovieGateway {
 			throw new ResourceNotFoundException ();
 		}
 		return ObjectMapperUtils.map(movieDataJPA.get(), MovieEntity.class);
+	}
+	
+	
+	@Override
+	public List<MovieEntity> getMoviesByFilters(String name, Set<Long> genre, String order) {
+		MoviesFiltersDTO moviesFiltersDTO = new MoviesFiltersDTO (name,genre,order);	
+
+		List<MovieDataJPA> listMoviesResponseFilter = movieRepositoryJPA.findAll(movieSpecification.getByFilter(moviesFiltersDTO));
+		return ObjectMapperUtils.mapAll(listMoviesResponseFilter, MovieEntity.class);
 	}
 
 
@@ -77,6 +90,9 @@ public class OperationDataMovieJPA implements MovieGateway {
 		}
 
 	}
+
+
+
 
 
 

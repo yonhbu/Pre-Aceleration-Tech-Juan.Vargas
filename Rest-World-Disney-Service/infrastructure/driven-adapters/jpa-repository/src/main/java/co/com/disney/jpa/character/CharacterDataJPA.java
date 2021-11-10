@@ -1,8 +1,7 @@
-package co.com.disney.jpa.characterjpa;
+package co.com.disney.jpa.character;
 
 import java.io.Serializable;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,12 +10,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import co.com.disney.jpa.moviejpa.MovieDataJPA;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
+import co.com.disney.jpa.movie.MovieDataJPA;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +28,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="CHARACTERDATA")
+@SQLDelete(sql = "update characterdata SET deleted = true where id_character = ?")
+@Where(clause = "deleted = false")
 public class CharacterDataJPA implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -49,6 +51,9 @@ public class CharacterDataJPA implements Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "character", cascade = CascadeType.ALL)
 	private List<MovieDataJPA> listMovie;
+	
+	@Builder.Default
+    private boolean deleted = Boolean.FALSE;
 
 
 }

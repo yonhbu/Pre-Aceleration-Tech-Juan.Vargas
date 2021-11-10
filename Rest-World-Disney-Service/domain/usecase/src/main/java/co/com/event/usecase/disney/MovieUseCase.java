@@ -2,6 +2,8 @@ package co.com.event.usecase.disney;
 
 
 import java.util.List;
+import java.util.Set;
+
 
 import co.com.disney.model.MovieEntity;
 import co.com.disney.model.dto.request.MovieRqDTO;
@@ -40,6 +42,13 @@ public class MovieUseCase {
 	public MovieRsDTO findMovie(Long movieId) {
 		MovieEntity movie = movieGateway.findMovie(movieId);
 		return ObjectMapperUtils.map(movie, MovieRsDTO.class);
+	}
+	
+	
+
+	public List<MovieRsDTO> getMoviessByFilters(String name, Set<Long> gender, String order) {
+		List<MovieEntity> listMoviesResponseFilter = movieGateway.getMoviesByFilters(name,gender, order);
+		return ObjectMapperUtils.mapAll(listMoviesResponseFilter, MovieRsDTO.class);
 	}
 
 

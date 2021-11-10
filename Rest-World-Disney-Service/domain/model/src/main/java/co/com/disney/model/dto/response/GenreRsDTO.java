@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class GenderRsDTO {	
+public class GenreRsDTO {	
 	
-	private Long idGender;
-	private String name;
+	private Long idGenre;
+	private String title;
 	private String image;   
   
 

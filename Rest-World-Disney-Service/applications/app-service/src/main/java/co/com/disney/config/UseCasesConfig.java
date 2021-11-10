@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 
 import co.com.disney.model.gateways.CharacterGateway;
-import co.com.disney.model.gateways.GenderGateway;
+import co.com.disney.model.gateways.GenreGateway;
 import co.com.disney.model.gateways.MovieGateway;
 import co.com.event.usecase.disney.CharacterUseCase;
-import co.com.event.usecase.disney.GenderUseCase;
+import co.com.event.usecase.disney.GenreUseCase;
 import co.com.event.usecase.disney.MovieUseCase;
 
 
@@ -33,8 +33,8 @@ public class UseCasesConfig {
 	}
 	
 	@Bean
-	public GenderUseCase createGenderUseCase(GenderGateway gateway) {
-		return new GenderUseCase(gateway);
+	public GenreUseCase createGenreUseCase(GenreGateway gateway) {
+		return new GenreUseCase(gateway);
 	}
 
 
