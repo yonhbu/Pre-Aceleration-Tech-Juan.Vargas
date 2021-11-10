@@ -12,13 +12,13 @@
 					"name": "Disney Word",
 					"item": [
 						{
-							"name": "Create Character",
+							"name": "Create/Character",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Aladdin\",\r\n    \"age\": 20,\r\n    \"weight\": 5,\r\n    \"history\": \"Animated and designed by Glen Keane, Aladdin is a traditionally handsome slim man, and slightly muscular young man with broad shoulders.\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Jasmine\",\r\n    \"image\": \"/src/disney/image/jasmine.jpg\",\r\n    \"age\": 18,\r\n    \"weight\": 54,\r\n    \"history\": \"Jasmine is a beautiful fifteen-year-old princess daughter of the Sultan of Agrabah. Unwilling to marry any of the princes her father suggests, she runs away from home, but because she has never been outside the palace before.\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -40,10 +40,148 @@
 							"response": []
 						},
 						{
-							"name": "Consult Field Character",
+							"name": "Consult/All",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Aut",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/character/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"character",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/Field",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Aut",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/character/field",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"character",
+										"field"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/Filter",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/character?name=aladdin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"character"
+									],
+									"query": [
+										{
+											"key": "age",
+											"value": "25",
+											"disabled": true
+										},
+										{
+											"key": "name",
+											"value": "aladdin"
+										},
+										{
+											"key": "order",
+											"value": "ASC",
+											"disabled": true
+										},
+										{
+											"key": "movies",
+											"value": "7,11",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Details/Id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Aut",
+										"value": "",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "http://localhost:8000/character/1",
 									"protocol": "http",
@@ -60,13 +198,13 @@
 							"response": []
 						},
 						{
-							"name": "Update Character",
+							"name": "Update/Character",
 							"request": {
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Aladdín\",\r\n    \"age\": 20,\r\n    \"weight\": 55,\r\n    \"history\": \"Animated and designed by Glen Keane, Aladdin is a traditionally handsome slim man, and slightly muscular young man with broad shoulders.\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Jasmine\",\r\n    \"image\": \"/src/disney/image/jasmine.jpg\",\r\n    \"age\": 20,\r\n    \"weight\": 55,\r\n    \"history\": \"Jasmine is a beautiful fifteen-year-old princess daughter of the Sultan of Agrabah. Unwilling to marry any of the princes her father suggests, she runs away from home, but because she has never been outside the palace before.\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -89,7 +227,7 @@
 							"response": []
 						},
 						{
-							"name": "Delete Character",
+							"name": "Delete/Character",
 							"request": {
 								"method": "DELETE",
 								"header": [],
@@ -109,13 +247,76 @@
 							"response": []
 						},
 						{
-							"name": "Create Movie",
+							"name": "Create/Genre",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"El Sultan\",\r\n    \"creationDate\": \"1998-01-02\",\r\n    \"rating\": 5\r\n}\r\n",
+									"raw": "{\r\n    \"title\": \"Romantic\",\r\n    \"image\": \"/src/disney/image/Genre-Romantic.jpg\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/genre",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"genre"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/Genre/All",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Aut",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/genre",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"genre"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create/Movie",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Aladdin\",\r\n    \"image\": \"/src/disney/image/aladdin.jpg\",\r\n    \"creationDate\": \"1998-01-02\",\r\n    \"idGenre\": 1,\r\n    \"rating\": 5,\r\n    \"character\": [\r\n    {\r\n    \"name\": \"Aladdin\",\r\n    \"image\": \"/src/disney/image/aladdin.jpg\",\r\n    \"age\": 20,\r\n    \"weight\": 55,\r\n    \"history\": \"Animated and designed by Glen Keane, Aladdin is a traditionally handsome slim man, and slightly muscular young man with broad shoulders.\"\r\n    }\r\n\r\n    ]\r\n    \r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -137,12 +338,130 @@
 							"response": []
 						},
 						{
-							"name": "Consult Field Movie",
+							"name": "Consult/Movie/All",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Aut",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/movie/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movie",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/Movie/Field",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Aut",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/movie/field",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movie",
+										"field"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Details/Movie/Id",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Aut",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/movie/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"movie",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Consult/Movie/Filter",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2YXJnYXNqdWFAZ21haWwuY29tIiwiZXhwIjoxNjM2MjY0NTkwLCJpYXQiOjE2MzYyMjg1OTB9.wxMdHj3eCnoPcRvigdUvVaDRvLqCcJtGIeSNrY9cCW0",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/movie",
+									"raw": "http://localhost:8000/movie?name=Libre Soy&gender=1,2",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -150,19 +469,34 @@
 									"port": "8000",
 									"path": [
 										"movie"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Libre Soy"
+										},
+										{
+											"key": "gender",
+											"value": "1,2"
+										},
+										{
+											"key": "order",
+											"value": "ASC",
+											"disabled": true
+										}
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Update Movie",
+							"name": "Update/Movie",
 							"request": {
 								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"title\": \"El Sultan\",\r\n    \"creationDate\": \"1998-01-02\",\r\n    \"rating\": 10\r\n}\r\n",
+									"raw": "{\r\n    \"title\": \"Aladdin\",\r\n    \"image\": \"/src/disney/image/aladdin.jpg\",\r\n    \"creationDate\": \"1998-01-02\",\r\n    \"idGenre\": 1,\r\n    \"rating\": 10,\r\n    \"character\": [\r\n    {\r\n    \"name\": \"Aladdin\",\r\n    \"image\": \"/src/disney/image/aladdin.jpg\",\r\n    \"age\": 22,\r\n    \"weight\": 60,\r\n    \"history\": \"Animated and designed by Glen Keane, Aladdin is a traditionally handsome slim man, and slightly muscular young man with broad shoulders.\"\r\n    }\r\n\r\n    ]\r\n    \r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -185,12 +519,12 @@
 							"response": []
 						},
 						{
-							"name": "Delete Movie",
+							"name": "Delete/Movie",
 							"request": {
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/movie/12",
+									"raw": "http://localhost:8000/movie/1",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -198,117 +532,7 @@
 									"port": "8000",
 									"path": [
 										"movie",
-										"12"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "(Fail) Details Character",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/character/1",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"character",
 										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "(Fail) Details Movie",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/movie/10",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"movie",
-										"10"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "(Fail) Filter Search Character",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/characters?name=Aladdin",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"characters"
-									],
-									"query": [
-										{
-											"key": "age",
-											"value": "20",
-											"disabled": true
-										},
-										{
-											"key": "idMovie",
-											"value": "1",
-											"disabled": true
-										},
-										{
-											"key": "name",
-											"value": "Aladdin"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "(Fail) Filter Search Movie",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/characters?name=Aladdín",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"characters"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "Aladdín"
-										},
-										{
-											"key": "genre",
-											"value": "",
-											"disabled": true
-										},
-										{
-											"key": "order",
-											"value": "1",
-											"disabled": true
-										}
 									]
 								}
 							},

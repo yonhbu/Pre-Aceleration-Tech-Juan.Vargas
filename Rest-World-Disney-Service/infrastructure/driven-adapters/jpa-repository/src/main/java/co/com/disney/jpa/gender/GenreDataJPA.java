@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 import co.com.disney.jpa.movie.MovieDataJPA;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

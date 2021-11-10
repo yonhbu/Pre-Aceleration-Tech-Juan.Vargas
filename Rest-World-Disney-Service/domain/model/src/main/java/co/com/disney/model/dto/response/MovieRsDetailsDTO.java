@@ -1,7 +1,6 @@
 package co.com.disney.model.dto.response;
 
-import java.util.List;
-
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,13 +10,12 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class CharacterRsDTO {
+public class MovieRsDetailsDTO {
 	
-	private Long idCharacter;
+	private Long idMovie;
 	private String image;
-	private String name;
-	private Integer age;
-	private Integer weight;
-	private List<MovieRsDetailsDTO> listMovie;
+	private String title;
+	private LocalDate creationDate;	
+	private Integer rating;
 
 }

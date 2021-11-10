@@ -63,6 +63,7 @@ public class MovieDataJPA implements Serializable {
 	@Column (name = "id_Genre", nullable = false)
 	private Long idGenre;
 
+	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "FK_rel_character_movie",
 	joinColumns = {

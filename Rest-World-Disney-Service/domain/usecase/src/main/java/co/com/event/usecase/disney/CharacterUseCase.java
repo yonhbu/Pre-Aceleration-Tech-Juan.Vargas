@@ -18,10 +18,10 @@ public class CharacterUseCase {
 	private final CharacterGateway characterGateway;
 
 
-	public CharacterRsDTO saveCharacter (CharacterRqDTO characterRqDTO) {
+	public CharacterRqDTO saveCharacter (CharacterRqDTO characterRqDTO) {
 		CharacterEntity characterEntity = ObjectMapperUtils.map(characterRqDTO, CharacterEntity.class);
 		CharacterEntity character = characterGateway.save(characterEntity);
-		return ObjectMapperUtils.map(character, CharacterRsDTO.class);
+		return ObjectMapperUtils.map(character, CharacterRqDTO.class);
 	}
 
 
@@ -48,7 +48,7 @@ public class CharacterUseCase {
 	}
 
 
-	public CharacterRsDTO updateCharacter(Long characterId, CharacterRqDTO characterRqDTO) {
+	public CharacterRqDTO updateCharacter(Long characterId, CharacterRqDTO characterRqDTO) {
 		CharacterEntity characterEntity = ObjectMapperUtils.map(characterRqDTO, CharacterEntity.class);
 		CharacterEntity characterFind = characterGateway.findCharacter(characterId);
 
@@ -63,7 +63,7 @@ public class CharacterUseCase {
 		characterFind.setHistory(characterEntity.getHistory());
 
 		characterGateway.save(characterEntity);
-		return ObjectMapperUtils.map(characterFind, CharacterRsDTO.class);
+		return ObjectMapperUtils.map(characterFind, CharacterRqDTO.class);
 
 	}
 

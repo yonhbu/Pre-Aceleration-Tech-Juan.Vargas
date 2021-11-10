@@ -34,8 +34,8 @@ public class CharacterController {
 
 
 	@PostMapping()
-	public ResponseEntity<CharacterRsDTO> insert (@RequestBody CharacterRqDTO characterRqDTO) {
-		CharacterRsDTO characterResponse = characterUseCase.saveCharacter(characterRqDTO);
+	public ResponseEntity<CharacterRqDTO> insert (@RequestBody CharacterRqDTO characterRqDTO) {
+		CharacterRqDTO characterResponse = characterUseCase.saveCharacter(characterRqDTO);
 		return new ResponseEntity<>(characterResponse, HttpStatus.CREATED);
 
 	}
@@ -82,8 +82,8 @@ public class CharacterController {
 
 
 	@PutMapping("/{characterId}")
-	public ResponseEntity<CharacterRsDTO> update (@PathVariable ("characterId") Long characterId, @RequestBody CharacterRqDTO characterRqDTO) {
-		CharacterRsDTO characterResponse = characterUseCase.updateCharacter(characterId, characterRqDTO);
+	public ResponseEntity<CharacterRqDTO> update (@PathVariable ("characterId") Long characterId, @RequestBody CharacterRqDTO characterRqDTO) {
+		CharacterRqDTO characterResponse = characterUseCase.updateCharacter(characterId, characterRqDTO);
 		return new ResponseEntity<>(characterResponse, HttpStatus.OK);
 
 	}
