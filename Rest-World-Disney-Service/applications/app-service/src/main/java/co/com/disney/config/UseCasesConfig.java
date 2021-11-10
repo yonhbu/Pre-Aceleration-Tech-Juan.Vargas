@@ -9,9 +9,11 @@ import org.springframework.context.annotation.FilterType;
 import co.com.disney.model.gateways.CharacterGateway;
 import co.com.disney.model.gateways.GenreGateway;
 import co.com.disney.model.gateways.MovieGateway;
+import co.com.disney.model.gateways.UserGatewayService;
 import co.com.event.usecase.disney.CharacterUseCase;
 import co.com.event.usecase.disney.GenreUseCase;
 import co.com.event.usecase.disney.MovieUseCase;
+import co.com.event.usecase.security.UserDetailUseCase;
 
 
 @Configuration
@@ -42,6 +44,14 @@ public class UseCasesConfig {
 	public ObjectMapperImp objectMapper() {
 		return new ObjectMapperImp();
 	}
+	
+	@Bean
+	public UserDetailUseCase userDetailUseCase (UserGatewayService userGatewayService) {
+		return new UserDetailUseCase(userGatewayService);
+	}
+	
+	
+	
 
 }
 

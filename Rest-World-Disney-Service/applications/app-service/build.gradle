@@ -1,6 +1,7 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+	implementation project(':security-repository')
 	implementation project(':repository-commons')
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version: '2.4.2'
 	compile 'org.reactivecommons.utils:object-mapper:0.1.0'
@@ -9,6 +10,8 @@ dependencies {
     implementation project(':model')
     implementation project(':usecase')
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
 }
 
