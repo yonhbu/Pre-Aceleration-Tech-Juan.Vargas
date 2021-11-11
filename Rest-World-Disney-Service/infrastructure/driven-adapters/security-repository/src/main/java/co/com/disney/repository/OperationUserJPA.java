@@ -4,6 +4,7 @@ package co.com.disney.repository;
 
 import java.util.Collections;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,8 +26,10 @@ public class OperationUserJPA implements UserGatewayService, UserDetailsService 
 
 	private final UserRepository userRepository;
 	
+	@Autowired
 	private AuthenticationManager authenticationManager; 
 	
+	@Autowired
 	private JWTUtil jWTUtil;	
 	
 

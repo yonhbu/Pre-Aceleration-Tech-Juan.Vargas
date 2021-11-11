@@ -12,6 +12,69 @@
 					"name": "Disney Word",
 					"item": [
 						{
+							"name": "auth",
+							"item": [
+								{
+									"name": "SingUp",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"username\": \"vargasjuan@gmail.com\",\r\n  \"password\": \"2147483647\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/auth/signup",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"auth",
+												"signup"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Authenticate",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"username\": \"vargasjuan@gmail.com\",\r\n  \"password\": \"2147483647\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8000/auth/authenticate",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8000",
+											"path": [
+												"auth",
+												"authenticate"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
 							"name": "Create/Character",
 							"request": {
 								"method": "POST",

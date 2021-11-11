@@ -49,8 +49,7 @@ public class UseCasesConfig {
 	public UserDetailUseCase userDetailUseCase (UserGatewayService userGatewayService) {
 		return new UserDetailUseCase(userGatewayService);
 	}
-	
-	
+
 	
 
 }

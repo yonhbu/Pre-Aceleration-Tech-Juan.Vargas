@@ -1,4 +1,4 @@
-package co.com.event.usecase.util;
+package co.com.disney.auth;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -12,7 +12,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-@Component
 public class JWTUtil {
 
 	private static String key = "disney_word";

@@ -46,8 +46,6 @@ public class UserDetailUseCase {
 	}
 
 
-
-
 	public UserDetails loadUserByUsername(String userName) {
 		return userGatewayService.loadUserByUsername(userName);
 	}
