@@ -15,16 +15,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import co.com.disney.auth.JwtFilterRequest;
 import co.com.disney.repository.OperationUserJPA;
+import lombok.RequiredArgsConstructor;
 
 
 
 @EnableWebSecurity
 @Configuration
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter { 
 	
 	@Autowired
 	private OperationUserJPA operationUserJPA;
-	
 	
 	@Autowired
 	private JwtFilterRequest jwtFilterRequest;
@@ -48,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.csrf().disable()
 		.authorizeRequests().antMatchers("/auth/*").permitAll() 
-		.anyRequest().authenticated()
+		.anyRequest().permitAll()
 		.and().exceptionHandling()
 		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
 

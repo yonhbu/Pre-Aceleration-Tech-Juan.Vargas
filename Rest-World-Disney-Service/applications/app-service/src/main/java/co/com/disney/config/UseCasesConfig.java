@@ -6,9 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 
-import co.com.disney.email.EmailUseCase;
 import co.com.disney.model.gateways.CharacterGateway;
-import co.com.disney.model.gateways.EmailGateway;
 import co.com.disney.model.gateways.GenreGateway;
 import co.com.disney.model.gateways.MovieGateway;
 import co.com.disney.usecase.disney.CharacterUseCase;
