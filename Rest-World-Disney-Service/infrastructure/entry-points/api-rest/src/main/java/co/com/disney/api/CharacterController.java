@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.disney.model.dto.request.CharacterRqDTO;
 import co.com.disney.model.dto.response.CharacterDTONameAndImage;
 import co.com.disney.model.dto.response.CharacterRsDTO;
-import co.com.event.usecase.disney.CharacterUseCase;
+import co.com.disney.usecase.disney.CharacterUseCase;
 import lombok.RequiredArgsConstructor;
 
 

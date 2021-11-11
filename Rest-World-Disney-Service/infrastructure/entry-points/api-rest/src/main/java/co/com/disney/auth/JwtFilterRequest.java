@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,7 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-import co.com.event.usecase.security.UserDetailUseCase;
+
+import co.com.disney.usecase.security.UserDetailUseCase;
 import lombok.RequiredArgsConstructor;
 
 
@@ -30,7 +30,6 @@ public class JwtFilterRequest extends OncePerRequestFilter {
 	
 	private UserDetailUseCase userDetailUseCase;
 
-	@Autowired
 	private AuthenticationManager authenticationManager;
 
 

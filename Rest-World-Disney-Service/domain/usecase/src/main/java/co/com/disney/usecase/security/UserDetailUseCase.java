@@ -1,4 +1,4 @@
-package co.com.event.usecase.security;
+package co.com.disney.usecase.security;
 
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,7 @@ import co.com.disney.model.dto.request.AuthenticationRequestDTO;
 import co.com.disney.model.dto.response.TokenResponseDTO;
 import co.com.disney.model.dto.response.UserRsDTO;
 import co.com.disney.model.gateways.UserGatewayService;
-import co.com.event.usecase.util.ObjectMapperUtils;
+import co.com.disney.usecase.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

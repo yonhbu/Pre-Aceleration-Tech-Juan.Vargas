@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import co.com.disney.email.EmailUseCase;
 import co.com.disney.model.TokenEntity;
 import co.com.disney.model.UserEntity;
 import co.com.disney.model.gateways.UserGatewayService;
@@ -32,6 +33,9 @@ public class OperationUserJPA implements UserGatewayService, UserDetailsService 
 	@Autowired
 	private JWTUtil jWTUtil;	
 	
+	@Autowired
+	EmailUseCase emailUseCase;
+	
 
 	@Override
 	public UserEntity saveUser(UserEntity userDTO) {
@@ -42,9 +46,9 @@ public class OperationUserJPA implements UserGatewayService, UserDetailsService 
 		
 		UserDataJPA userRsDataJPASave = userRepository.save(userDataJPA);
 	
-//		if (userRsSave != null) {
-//			emailServiceImpl.sendWelcomeEmailTo(userRsSave.getUsername());
-//		}
+		if (userRsDataJPASave != null) {
+			emailUseCase.sendWelcomeEmailTo(userRsDataJPASave.getUsername());
+		}
 		return ObjectMapperUtils.map(userRsDataJPASave, UserEntity.class);
 	}
 	

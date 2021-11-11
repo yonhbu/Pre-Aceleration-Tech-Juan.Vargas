@@ -1,12 +1,13 @@
-package co.com.event.usecase.disney;
+package co.com.disney.usecase.disney;
 
 
 import java.util.List;
+
 import co.com.disney.model.GenreEntity;
 import co.com.disney.model.dto.request.GenreRqDTO;
 import co.com.disney.model.dto.response.GenreRsDTO;
 import co.com.disney.model.gateways.GenreGateway;
-import co.com.event.usecase.util.ObjectMapperUtils;
+import co.com.disney.usecase.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

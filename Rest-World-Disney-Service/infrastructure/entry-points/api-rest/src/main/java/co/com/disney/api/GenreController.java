@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.disney.model.dto.request.GenreRqDTO;
 import co.com.disney.model.dto.response.GenreRsDTO;
-import co.com.event.usecase.disney.GenreUseCase;
+import co.com.disney.usecase.disney.GenreUseCase;
 import lombok.RequiredArgsConstructor;
 
 

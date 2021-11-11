@@ -1,9 +1,8 @@
-package co.com.event.usecase.disney;
+package co.com.disney.usecase.disney;
 
 
 import java.util.List;
 import java.util.Set;
-
 
 import co.com.disney.model.MovieEntity;
 import co.com.disney.model.dto.request.MovieRqDTO;
@@ -11,7 +10,7 @@ import co.com.disney.model.dto.response.MovieRsDTO;
 import co.com.disney.model.dto.response.MoviesDTOTitleAndImage;
 import co.com.disney.model.exception.ResourceNotFoundException;
 import co.com.disney.model.gateways.MovieGateway;
-import co.com.event.usecase.util.ObjectMapperUtils;
+import co.com.disney.usecase.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

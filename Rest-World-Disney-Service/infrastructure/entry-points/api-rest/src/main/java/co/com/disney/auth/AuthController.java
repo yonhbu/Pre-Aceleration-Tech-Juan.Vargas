@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.disney.model.dto.request.AuthenticationRequestDTO;
 import co.com.disney.model.dto.response.TokenResponseDTO;
 import co.com.disney.model.dto.response.UserRsDTO;
-import co.com.event.usecase.security.UserDetailUseCase;
+import co.com.disney.usecase.security.UserDetailUseCase;
 import lombok.RequiredArgsConstructor;
 
 @RestController

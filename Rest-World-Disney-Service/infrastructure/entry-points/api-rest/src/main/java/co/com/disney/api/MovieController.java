@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.disney.model.dto.request.MovieRqDTO;
 import co.com.disney.model.dto.response.MovieRsDTO;
 import co.com.disney.model.dto.response.MoviesDTOTitleAndImage;
-import co.com.event.usecase.disney.MovieUseCase;
+import co.com.disney.usecase.disney.MovieUseCase;
 import lombok.RequiredArgsConstructor;
 
 

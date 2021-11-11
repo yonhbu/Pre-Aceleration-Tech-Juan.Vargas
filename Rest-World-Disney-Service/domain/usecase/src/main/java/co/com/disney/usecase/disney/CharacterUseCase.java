@@ -1,4 +1,4 @@
-package co.com.event.usecase.disney;
+package co.com.disney.usecase.disney;
 
 import java.util.List;
 import java.util.Set;
@@ -9,7 +9,7 @@ import co.com.disney.model.dto.response.CharacterDTONameAndImage;
 import co.com.disney.model.dto.response.CharacterRsDTO;
 import co.com.disney.model.exception.ResourceNotFoundException;
 import co.com.disney.model.gateways.CharacterGateway;
-import co.com.event.usecase.util.ObjectMapperUtils;
+import co.com.disney.usecase.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
