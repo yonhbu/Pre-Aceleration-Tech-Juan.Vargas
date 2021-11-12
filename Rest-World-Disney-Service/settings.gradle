@@ -14,3 +14,5 @@ include ':repository-commons'
 project(':repository-commons').projectDir = file('./infrastructure/helpers/repository-commons')
 include ':security-repository'
 project(':security-repository').projectDir = file('./infrastructure/driven-adapters/security-repository')
+include ':email-repository'
+project(':email-repository').projectDir = file('./infrastructure/driven-adapters/email-repository')

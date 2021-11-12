@@ -14,24 +14,26 @@ import com.sendgrid.SendGrid;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
+
+import co.com.disney.model.gateways.EmailGateway;
 import lombok.extern.slf4j.Slf4j;
 
 
 @Component
 @Slf4j
-public class EmailUseCase {
+public class EmailUseCase implements EmailGateway {
 	
-	
+
 	@Value("${disney.word.email.sender}")
 	private String emailSender;
 	
 	@Autowired
 	private Environment env;
 	
-	
+
+	@Override
 	public void sendWelcomeEmailTo(String to) {
-		
-		String apiKey = env.getProperty("EMAIL_API_KEY");
+	String apiKey = env.getProperty("EMAIL_API_KEY");
 		
 		Email fromEmail = new Email(emailSender);
 		Email fromTo = new Email(to);
@@ -65,6 +67,5 @@ public class EmailUseCase {
 		}
 		
 	}
-
 
 }
