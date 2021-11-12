@@ -3,7 +3,8 @@ package co.com.disney.jpa.gender;
 
 import java.util.List;
 import org.springframework.stereotype.Component;
-import co.com.disney.jpa.util.ObjectMapperUtils;
+
+import co.com.disney.mapper.ObjectMapperUtils;
 import co.com.disney.model.GenreEntity;
 import co.com.disney.model.gateways.GenreGateway;
 import lombok.RequiredArgsConstructor;

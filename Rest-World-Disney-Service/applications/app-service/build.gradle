@@ -1,9 +1,10 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+
 	implementation project(':security-repository')
     implementation project(':email-repository')
-	implementation project(':repository-commons')
+	implementation project(':helpers-repository-commons')
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version: '2.4.2'
 	compile 'org.reactivecommons.utils:object-mapper:0.1.0'
 	implementation project(':api-rest')

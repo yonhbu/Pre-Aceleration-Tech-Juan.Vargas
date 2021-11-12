@@ -1,4 +1,4 @@
-package co.com.disney.handler;
+package co.com.disney.handler.exception;
 
 import java.util.Arrays;
 import java.util.Date;

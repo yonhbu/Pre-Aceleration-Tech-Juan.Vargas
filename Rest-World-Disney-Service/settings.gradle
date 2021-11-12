@@ -1,5 +1,6 @@
 rootProject.name = 'Disney_Word'
 
+
 include ':app-service'
 include ':model'
 include ':usecase'
@@ -10,8 +11,8 @@ include ':jpa-repository'
 project(':jpa-repository').projectDir = file('./infrastructure/driven-adapters/jpa-repository')
 include ':api-rest'
 project(':api-rest').projectDir = file('./infrastructure/entry-points/api-rest')
-include ':repository-commons'
-project(':repository-commons').projectDir = file('./infrastructure/helpers/repository-commons')
+include ':helpers-repository-commons'
+project(':helpers-repository-commons').projectDir = file('./infrastructure/helpers/helpers-repository-commons')
 include ':security-repository'
 project(':security-repository').projectDir = file('./infrastructure/driven-adapters/security-repository')
 include ':email-repository'

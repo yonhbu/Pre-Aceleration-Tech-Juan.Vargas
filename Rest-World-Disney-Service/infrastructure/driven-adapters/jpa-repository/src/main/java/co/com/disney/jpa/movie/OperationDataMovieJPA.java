@@ -6,7 +6,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
-import co.com.disney.jpa.util.ObjectMapperUtils;
+
+import co.com.disney.mapper.ObjectMapperUtils;
 import co.com.disney.model.MovieEntity;
 import co.com.disney.model.dto.request.MoviesFiltersDTO;
 import co.com.disney.model.exception.ResourceNotFoundException;

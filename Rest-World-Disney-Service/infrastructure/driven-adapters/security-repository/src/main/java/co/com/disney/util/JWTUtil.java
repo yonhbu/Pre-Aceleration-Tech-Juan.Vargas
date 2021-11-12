@@ -1,4 +1,4 @@
-package co.com.disney.repository;
+package co.com.disney.util;
 
 import java.util.Date;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package co.com.disney.repository;
+package co.com.disney.mapper;
 
 import java.util.Collection;
 import java.util.List;
