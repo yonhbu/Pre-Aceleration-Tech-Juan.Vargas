@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
-
 import co.com.disney.model.gateways.CharacterGateway;
 import co.com.disney.model.gateways.GenreGateway;
 import co.com.disney.model.gateways.MovieGateway;
@@ -32,11 +31,11 @@ public class UseCasesConfig {
 		return new MovieUseCase(gateway);
 	}
 	
+	
 	@Bean
 	public GenreUseCase createGenreUseCase(GenreGateway gateway) {
 		return new GenreUseCase(gateway);
 	}
-
 
 	@Bean
 	public ObjectMapperImp objectMapper() {

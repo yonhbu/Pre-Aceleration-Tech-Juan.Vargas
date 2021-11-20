@@ -13,14 +13,11 @@ import co.com.disney.usecase.util.ObjectMapperUtils;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UserDetailUseCase {
+public class SecurityUserDetailUseCase {
 	
 
 	private final UserGatewayService userGatewayService;
-	
-	
-	//@Autowired
-	//EmailServiceImpl emailServiceImpl;
+
 
 	public UserRsDTO saveUser(AuthenticationRequestDTO authenticationRequestDTO) {
 		UserEntity userSaveEntity = new UserEntity ();
@@ -28,10 +25,6 @@ public class UserDetailUseCase {
 		userSaveEntity.setPassword(authenticationRequestDTO.getPassword());
 		
 		UserEntity userRsSave = userGatewayService.saveUser(userSaveEntity);
-	
-//		if (userRsSave != null) {
-//			emailServiceImpl.sendWelcomeEmailTo(userRsSave.getUsername());
-//		}
 		return ObjectMapperUtils.map(userRsSave, UserRsDTO.class);
 	}
 	

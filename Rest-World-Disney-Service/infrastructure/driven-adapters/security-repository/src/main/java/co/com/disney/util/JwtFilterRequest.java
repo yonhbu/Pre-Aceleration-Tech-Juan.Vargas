@@ -1,4 +1,4 @@
-package co.com.disney.auth;
+package co.com.disney.util;
 
 import java.io.IOException;
 
@@ -6,8 +6,9 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.context.annotation.Lazy;
 
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -15,21 +16,26 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import co.com.disney.usecase.security.UserDetailUseCase;
-import lombok.RequiredArgsConstructor;
+import co.com.disney.repository.OperationUserJPA;
 
 
-@RequiredArgsConstructor
 @Component
 public class JwtFilterRequest extends OncePerRequestFilter {
 
-
 	private JWTUtil jwtUtil;
 	
-	private UserDetailUseCase userDetailUseCase;
+	@Autowired
+	private OperationUserJPA operationUserJPA;
 
 	private AuthenticationManager authenticationManager;
+	
+	
+	@Autowired
+    public JwtFilterRequest(@Lazy AuthenticationManager authenticationManager) {
+        this.jwtUtil = new JWTUtil();
+		this.authenticationManager = authenticationManager;
+    }
+
 
 
 	@Override
@@ -49,7 +55,7 @@ public class JwtFilterRequest extends OncePerRequestFilter {
 
 			if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null ) {  
 
-				UserDetails userDetails = userDetailUseCase.loadUserByUsername(userName); 
+				UserDetails userDetails = operationUserJPA.loadUserByUsername(userName); 
 
 				if (jwtUtil.validateToken(jwt, userDetails)) { 
 
@@ -66,7 +72,6 @@ public class JwtFilterRequest extends OncePerRequestFilter {
 		filterChain.doFilter(request, response); 
 
 	}
-
 
 
 

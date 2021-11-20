@@ -23,28 +23,27 @@ import co.com.disney.model.gateways.UserGatewayService;
 import co.com.disney.util.JWTUtil;
 import lombok.RequiredArgsConstructor;
 
+
 @Component
 @RequiredArgsConstructor
 public class OperationUserJPA implements UserGatewayService, UserDetailsService {
 
 	private final UserRepository userRepository;
 	
+	private final JWTUtil jWTUtil;	
+	
+	private final EmailGateway emailGateway;
+	
 	@Autowired
 	private AuthenticationManager authenticationManager; 
 	
-	@Autowired
-	private JWTUtil jWTUtil;	
-	
-	@Autowired
-	EmailGateway emailGateway;
-	
 
 	@Override
-	public UserEntity saveUser(UserEntity userDTO) {
+	public UserEntity saveUser(UserEntity userEntity) {
 		
 		UserDataJPA userDataJPA = new UserDataJPA ();
-		userDataJPA.setUsername(userDTO.getUsername());	
-		userDataJPA.setPassword(userDTO.getPassword());
+		userDataJPA.setUsername(userEntity.getUsername());	
+		userDataJPA.setPassword(userEntity.getPassword());
 		
 		UserDataJPA userRsDataJPASave = userRepository.save(userDataJPA);
 	

@@ -1,4 +1,4 @@
-package co.com.disney.auth;
+package co.com.disney.api;
 
 
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.com.disney.model.dto.request.AuthenticationRequestDTO;
 import co.com.disney.model.dto.response.TokenResponseDTO;
 import co.com.disney.model.dto.response.UserRsDTO;
-import co.com.disney.usecase.security.UserDetailUseCase;
+import co.com.disney.usecase.security.SecurityUserDetailUseCase;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/auth")
 public class AuthController {
 
-	private final UserDetailUseCase userDetailUseCase;
+	private final SecurityUserDetailUseCase userDetailUseCase;
 
 
 	@PostMapping("/signup")
