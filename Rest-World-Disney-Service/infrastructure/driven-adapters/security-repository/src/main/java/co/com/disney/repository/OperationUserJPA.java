@@ -3,6 +3,7 @@ package co.com.disney.repository;
 
 
 import java.util.Collections;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import co.com.disney.mapper.ObjectMapperUtils;
@@ -34,6 +36,8 @@ public class OperationUserJPA implements UserGatewayService, UserDetailsService 
 	
 	private final EmailGateway emailGateway;
 	
+	private final PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private AuthenticationManager authenticationManager; 
 	
@@ -43,10 +47,10 @@ public class OperationUserJPA implements UserGatewayService, UserDetailsService 
 		
 		UserDataJPA userDataJPA = new UserDataJPA ();
 		userDataJPA.setUsername(userEntity.getUsername());	
-		userDataJPA.setPassword(userEntity.getPassword());
+		userDataJPA.setPassword(passwordEncoder.encode(userEntity.getPassword()));
 		
 		UserDataJPA userRsDataJPASave = userRepository.save(userDataJPA);
-	
+
 		if (userRsDataJPASave != null) {
 			emailGateway.sendWelcomeEmailTo(userRsDataJPASave.getUsername());
 		}

@@ -7,8 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import co.com.disney.repository.OperationUserJPA;
 import co.com.disney.util.JwtFilterRequest;
@@ -24,18 +23,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private final JwtFilterRequest jwtFilterRequest;
 	
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	
 
 	@Override 
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception { 
-		auth.userDetailsService(operationUserJPA);   
+		auth.userDetailsService(operationUserJPA).passwordEncoder(bCryptPasswordEncoder);   
 	}
 	
-	
-	@Bean
-	public PasswordEncoder passwordEncoder () {
-		return NoOpPasswordEncoder.getInstance();
-	}
 	
 	
 	@Override
@@ -57,6 +53,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
 	}
+	
+	
+	
 	
 	
 	
