@@ -1,11 +1,13 @@
 dependencies {
-    implementation project(':model')
 
+    implementation project(':model')
     implementation project(':helpers-repository-commons')
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'javax.validation:validation-api:2.0.1.Final'
-    implementation 'org.modelmapper:modelmapper:2.1.1'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.0'
     
-    implementation 'mysql:mysql-connector-java'
+    implementation	libs.api_validation
+    implementation	libs.jack
+    implementation	libs.mysql
+    implementation	libs.mapper
+    implementation	libs.spring_jpa
+
+
 }

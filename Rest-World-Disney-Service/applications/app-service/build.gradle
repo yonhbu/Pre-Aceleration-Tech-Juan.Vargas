@@ -11,10 +11,19 @@ dependencies {
 	implementation project(':jpa-repository')
     implementation project(':model')
     implementation project(':usecase')
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
     
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    
+    //Dependencias
+    implementation libs.spring_boot
+    implementation libs.spring_rest
+    implementation libs.spring_security
+    
+    
+    //Use JUnit test framework
+    implementation libs.unit_tests
+   
+
 }
 
 task explodedJar(type: Copy) {
