@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import co.com.disney.mapper.ObjectMapperUtils;
 import co.com.disney.model.CharacterEntity;
 import co.com.disney.model.dto.request.CharactersFiltersDTO;
-import co.com.disney.model.exception.ResourceNotFoundException;
+import co.com.disney.model.error.ResourceNotFoundException;
 import co.com.disney.model.gateways.CharacterGateway;
 import lombok.RequiredArgsConstructor;
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import co.com.disney.mapper.ObjectMapperUtils;
 import co.com.disney.model.MovieEntity;
 import co.com.disney.model.dto.request.MoviesFiltersDTO;
-import co.com.disney.model.exception.ResourceNotFoundException;
+import co.com.disney.model.error.ResourceNotFoundException;
 import co.com.disney.model.gateways.MovieGateway;
 import lombok.RequiredArgsConstructor;
 

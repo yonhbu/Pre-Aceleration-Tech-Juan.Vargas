@@ -1,4 +1,4 @@
-package co.com.disney.model.exception;
+package co.com.disney.model.error;
 
 public class UsernameNotFoundException extends RuntimeException{
 

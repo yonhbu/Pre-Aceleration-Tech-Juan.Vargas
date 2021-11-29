@@ -12,8 +12,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import co.com.disney.model.dto.error.MessageErrorDTO;
-import co.com.disney.model.exception.ResourceNotFoundException;
-import co.com.disney.model.exception.UsernameNotFoundException;
+import co.com.disney.model.error.ResourceNotFoundException;
+import co.com.disney.model.error.UsernameNotFoundException;
 
 
 
