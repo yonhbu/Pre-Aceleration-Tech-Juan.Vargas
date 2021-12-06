@@ -8,10 +8,8 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'jacoco'
     apply plugin: 'io.spring.dependency-management'
 
-    compileJava.dependsOn validateStructure
     sourceCompatibility = JavaVersion.VERSION_1_8
 
     dependencies {
@@ -26,9 +24,8 @@ subprojects {
     
     ext.libs = [
             unit_tests: [
-                    "com.squareup.okhttp3:okhttp:4.2.2",
-                    "com.squareup.okhttp3:mockwebserver:4.2.2",
-                    "io.projectreactor:reactor-test:3.3.0.RELEASE",
+                    "junit:junit:4.12",
+                    "org.mockito:mockito-all:1.10.19",
                     "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
             ],
             acceptance_tests: [
@@ -94,45 +91,9 @@ subprojects {
             ], 
             mysql:[
                     "mysql:mysql-connector-java"
-            ], 
-            test_unit:[
-                    "org.powermock:powermock-api-mockito2:1.7.4",
-                    "org.mockito:mockito-core:2.8.9",
-                    "org.powermock:powermock-module-junit4:1.6.4",
-                    "junit:junit:4.12"
             ]
     ]
 
-    test.finalizedBy(project.tasks.jacocoTestReport)
-
-    jacocoTestReport {
-        dependsOn test
-        reports {
-            xml.enabled true
-            xml.destination file("${buildDir}/reports/jacoco.xml")
-            csv.enabled false
-            html.destination file("${buildDir}/reports/jacocoHtml")
-        }
-    }
-
-}
-
-jacoco {
-    toolVersion = "${jacocoVersion}"
-    reportsDir = file("$buildDir/reports")
-}
-
-task jacocoMergedReport(type: JacocoReport) {
-    dependsOn = subprojects.jacocoTestReport
-    additionalSourceDirs.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
-    sourceDirectories.setFrom files(subprojects.sourceSets.main.allSource.srcDirs)
-    classDirectories.setFrom files(subprojects.sourceSets.main.output)
-    executionData.setFrom project.fileTree(dir: '.', include: '**/build/jacoco/test.exec')
-    reports {
-        xml.enabled true
-        csv.enabled false
-        html.enabled true
-    }
 }
 
 tasks.withType(JavaCompile) {

@@ -2,6 +2,7 @@ dependencies {
     implementation project(':usecase')
     implementation project(':model')
     
-    implementation	libs.spring_boot
-    implementation libs.spring_rest
+    testImplementation libs.unit_tests
+    implementation     libs.spring_boot
+    implementation     libs.spring_rest
 }
