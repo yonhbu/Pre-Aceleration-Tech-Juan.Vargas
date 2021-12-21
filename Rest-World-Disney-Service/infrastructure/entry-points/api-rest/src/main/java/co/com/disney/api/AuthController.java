@@ -23,7 +23,7 @@ public class AuthController {
 
 
 	@PostMapping("/signup")
-	public ResponseEntity<UserRsDTO> signUp (@RequestBody AuthenticationRequestDTO authenticationRequestDTO) throws Exception {
+	public ResponseEntity<UserRsDTO> signUp (@RequestBody AuthenticationRequestDTO authenticationRequestDTO) {
 		UserRsDTO userRsDTO = userDetailUseCase.saveUser(authenticationRequestDTO);
 		return new ResponseEntity<>(userRsDTO, HttpStatus.CREATED);
 	}

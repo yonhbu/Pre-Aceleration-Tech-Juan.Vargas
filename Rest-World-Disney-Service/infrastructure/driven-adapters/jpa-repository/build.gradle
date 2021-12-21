@@ -8,6 +8,7 @@ dependencies {
     implementation	libs.mysql
     implementation	libs.mapper
     implementation	libs.spring_jpa
+    testImplementation libs.unit_tests
 
 
 }

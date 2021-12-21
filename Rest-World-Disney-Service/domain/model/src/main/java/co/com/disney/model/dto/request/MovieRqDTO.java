@@ -2,9 +2,12 @@ package co.com.disney.model.dto.request;
 
 import java.time.LocalDate;
 import java.util.List;
+
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class MovieRqDTO  {
 	
 	private String image;

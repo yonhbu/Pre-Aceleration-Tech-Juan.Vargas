@@ -2,9 +2,6 @@ package co.com.disney.model.dto.response;
 
 
 import java.time.LocalDate;
-import java.util.List;
-
-import co.com.disney.model.CharacterEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

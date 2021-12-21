@@ -58,7 +58,7 @@ public class MovieController {
 
 
 	@GetMapping("/{movieId}")
-	public ResponseEntity<MovieRsDTO> findCharacterforID (@PathVariable ("movieId") Long movieId) {
+	public ResponseEntity<MovieRsDTO> findMovieforID (@PathVariable ("movieId") Long movieId) {
 		MovieRsDTO movieResponse = movieUseCase.findMovie(movieId);
 		return new ResponseEntity<>(movieResponse, HttpStatus.OK);
 
